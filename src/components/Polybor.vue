@@ -1,7 +1,7 @@
 <template>
     <div class="main">
         <div>
-            <img alt="Vue logo" src="../assets/ovn.png">
+            <img alt="Ovn logo" src="../assets/ovn.png">
         </div>
         <div class="title" @click="clickLogo">
             <a class="link">Polybor Overnight</a>
@@ -126,12 +126,12 @@ export default {
 }
 
 
-link:link {
+a:link {
     color: #131313;
     text-decoration: none;
 }
 
-link:visited {
+a:visited {
     color: #131313;
     text-decoration: none;
 }
