@@ -1,5 +1,11 @@
 <template>
     <div class="main">
+        <div>
+            <img alt="Ovn logo" src="../assets/ovn.png">
+        </div>
+        <div class="title" @click="clickLogo">
+            <a class="link">Polybor Overnight Interest Rate Benchmark</a>
+        </div>
         <line-chart :chartdata="chartdata" :options="options"/>
         <div class="signature" @click="clickLogo">
             <div class="powered-by">Powered by</div>
@@ -21,19 +27,26 @@ export default {
     data: ()=>({
         loading: true,
         chartdata: {
-            labels: ['January', 'February'],
+            labels: ['22-11-2021', '23-11-2021', '24-11-2021', '25-11-2021', '26-11-2021', '27-11-2021', '28-11-2021'],
             datasets: [
                 {
-                    label: 'Data One',
-                    backgroundColor: '#f87979',
-                    data: [40, 20]
+                    fill: false,
+                    borderColor: '#69a5fd',
+                    data: [10.07, 14.07, 15.07, 12.07, 19.07, 18.09, 15,16.16]
                 }
             ]
         },
 
         options: {
             responsive: true,
-            maintainAspectRatio: false
+            maintainAspectRatio: false,
+
+            legend: {
+                display: false
+            },
+            tooltips: {
+                enabled: false
+            }
         },
         items: [
             {
@@ -122,14 +135,14 @@ export default {
 
 .powered {
     font-weight: 500;
-    font-size: 11px;
+    font-size: 15px;
     color: #111111;
     margin-right: 5px;
 }
 
 .powered-by {
     font-weight: 500;
-    font-size: 11px;
+    font-size: 15px;
     color: #808a9d;
     margin-right: 5px;
 }
@@ -185,7 +198,7 @@ a:visited {
 
 .main {
     font-style: normal;
-    width: 141px;
+    width: 100%;
     padding: 16px;
     background: #fff;
     border-radius: 16px;
@@ -207,7 +220,7 @@ a:visited {
 
 .title {
     font-weight: 600;
-    font-size: 16px;
+    font-size: 18px;
     line-height: 1.2;
     color: #1e1e1e;
     overflow: hidden;

@@ -24,6 +24,10 @@ export default {
             type: String,
             default: 'interest'
         },
+
+        width: {
+            type: String,
+        }
     },
     components: {
         DistributionRate,
