@@ -5,7 +5,7 @@
         </div>
         <div class="title" @click="clickLogo">
             <a class="link">Polybor Overnight</a>
-            <p class="sub-title">Week Average</p>
+            <p class="sub-title">Weekly average</p>
         </div>
 
         <template v-if="item">

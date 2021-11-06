@@ -1,24 +1,23 @@
-# ovn-widget
+# ovn-widgets
 
-## Project setup
-```
-yarn install
-```
 
-### Compiles and hot-reloads for development
-```
-yarn serve
-```
+## Polybor Widget
 
-### Compiles and minifies for production
-```
-yarn build
-```
 
-### Lints and fixes files
-```
-yarn lint
-```
+`
+<ovn-widget type="polybor"></ovn-widget>
+`
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+![img.png](images/img.png)
+
+
+`
+<ovn-widget type="polybor-week"></ovn-widget>
+`
+
+![img_1.png](images/img_1.png)
+
+
+## Graph
+
+
