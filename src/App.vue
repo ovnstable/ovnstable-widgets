@@ -3,6 +3,9 @@
         <template v-if="type==='polybor'">
             <Polybor/>
         </template>
+        <template v-else-if="type === 'polybor-week'">
+            <PolyborWeek/>
+        </template>
         <template v-else>
             Unknown widget type: {{type}}
         </template>
@@ -12,6 +15,7 @@
 <script>
 
 import Polybor from "@/components/Polybor";
+import PolyborWeek from "@/components/PolyborWeek";
 
 export default {
     name: 'App',
@@ -22,6 +26,7 @@ export default {
         },
     },
     components: {
+        PolyborWeek,
         Polybor,
     }
 }

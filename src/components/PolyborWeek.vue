@@ -5,6 +5,7 @@
         </div>
         <div class="title" @click="clickLogo">
             <a class="link">Polybor Overnight</a>
+            <p class="sub-title">Week Average</p>
         </div>
 
         <template v-if="item">
@@ -33,7 +34,7 @@
 
 <script>
 export default {
-    name: 'Polybor',
+    name: 'PolyborWeek',
     props: {
         msg: String
     },
@@ -63,8 +64,8 @@ export default {
 
         getData() {
 
-            fetch('https://app.ovnstable.io/api/widget/polybor')
-            // fetch('http://localhost:3000/api/widget/polybor')
+            // fetch('https://app.ovnstable.io/api/widget/polybor-week')
+            fetch('http://localhost:3000/api/widget/polybor-week')
                 .then(value => value.json())
                 .then(value => {
                     this.item = value;
@@ -164,6 +165,16 @@ a:visited {
     display: inline-block;
     margin-right: 16px;
     text-align: center;
+}
+
+.link{
+    font-size: 16px;
+}
+
+.sub-title{
+    font-size: 14px;
+    margin-top: 5px;
+    margin-bottom: 0;
 }
 
 .lastest {
