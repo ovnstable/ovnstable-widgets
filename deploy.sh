@@ -5,9 +5,18 @@ token=$1
 url=$2
 tag=1
 
-
+cd polybor || exit
 npm run build
-find dist/js/ -type f -name '*.js' -exec sh -c 'x="{}"; mv "$x" "dist/js/widget.js"' \;
+
+cd ..
+find polybor/dist/js/ -type f -name '*.js' -exec sh -c 'x="{}"; mv "$x" "polybor/dist/js/polybor.js"' \;
+
+
+cd rate || exit
+npm run build
+
+cd ..
+find rate/dist/js/ -type f -name '*.js' -exec sh -c 'x="{}"; mv "$x" "rate/dist/js/rate.js"' \;
 
 docker build . -t cr.yandex/crpg11k469bhc8lch9gm/overnight/widget:$tag
 

@@ -18,6 +18,17 @@
 ![img_1.png](images/img_1.png)
 
 
-## Graph
+## Rate
 
 
+`
+<ovn-widget-rate type="distribution"></ovn-widget-rate>
+`
+
+![img.png](images/img_2.png)
+
+`
+<ovn-widget-rate type="interest"></ovn-widget-rate>
+`
+
+![img.png](images/img_3.png)
