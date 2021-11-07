@@ -6,7 +6,13 @@
         <div class="title" @click="clickLogo">
             <a class="link">Polybor Overnight Interest Rate Benchmark</a>
         </div>
-        <line-chart :chartdata="chartdata" :options="options"/>
+
+        <template v-if="chartdata">
+            <line-chart :chartdata="chartdata" :options="options"/>
+        </template>
+        <template v-else>
+            <div class="loader"></div>
+        </template>
         <div class="signature" @click="clickLogo">
             <div class="powered-by">Powered by</div>
             <div class="powered">ovnstable.io</div>
@@ -16,6 +22,7 @@
 
 <script>
 import LineChart from "../charts/LineChart";
+
 export default {
     name: 'InterestRate',
     components: {LineChart},
@@ -24,23 +31,18 @@ export default {
     },
 
 
-    data: ()=>({
+    data: () => ({
         loading: true,
-        chartdata: {
-            labels: ['22-11-2021', '23-11-2021', '24-11-2021', '25-11-2021', '26-11-2021', '27-11-2021', '28-11-2021'],
-            datasets: [
-                {
-                    fill: false,
-                    borderColor: '#69a5fd',
-                    data: [10.07, 14.07, 15.07, 12.07, 19.07, 18.09, 15,16.16]
-                }
-            ]
-        },
+        chartdata: null,
 
         options: {
             responsive: true,
             maintainAspectRatio: false,
-
+            elements: {
+                line: {
+                    tension: 0
+                }
+            },
             legend: {
                 display: false
             },
@@ -48,34 +50,10 @@ export default {
                 enabled: false
             }
         },
-        items: [
-            {
-                date: '22-11-2021',
-                value: 10.07,
-            },
-            {
-                date: '23-11-2021',
-                value: 14.07,
-            },
-            {
-                date: '24-11-2021',
-                value: 15.07,
-            },
-            {
-                date: '25-11-2021',
-                value: 12.07,
-            },
-            {
-                date: '26-11-2021',
-                value: 19.07,
-            },
-        ]
+
     }),
 
-    computed: {
-
-
-    },
+    computed: {},
 
 
     created() {
@@ -84,33 +62,41 @@ export default {
 
     methods: {
 
-        fillData () {
-            this.datacollection = {
-                labels: [this.getRandomInt(), this.getRandomInt()],
+        fillData(value) {
+
+
+            let labels = [];
+            let data = [];
+
+
+            for (let i = 0; i < value.length; i++) {
+                let element = value[i];
+                labels.push(element.date)
+                data.push(element.value)
+            }
+
+            let result = {
+                labels: labels,
                 datasets: [
                     {
-                        label: 'Data One',
-                        backgroundColor: '#f87979',
-                        data: [this.getRandomInt(), this.getRandomInt()]
-                    }, {
-                        label: 'Data One',
-                        backgroundColor: '#f87979',
-                        data: [this.getRandomInt(), this.getRandomInt()]
+                        fill: false,
+                        borderColor: '#69a5fd',
+                        data: data,
                     }
                 ]
             }
-        },
-        getRandomInt () {
-            return Math.floor(Math.random() * (50 - 5 + 1)) + 5
+
+            this.chartdata = result;
+
         },
 
         getData() {
 
-            fetch('https://app.ovnstable.io/api/widget/polybor')
-            // fetch('http://localhost:3000/api/widget/polybor')
+            // fetch('https://app.ovnstable.io/api/widget/interest-rate')
+            fetch('http://localhost:3000/api/widget/interest-rate')
                 .then(value => value.json())
                 .then(value => {
-                    this.item = value;
+                    this.fillData(value)
                     this.loading = false;
                 }).catch(reason => {
                 console.log('Error get data: ' + reason)
@@ -160,8 +146,12 @@ export default {
 }
 
 @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
 .up {
@@ -227,7 +217,6 @@ a:visited {
     text-overflow: ellipsis;
     cursor: pointer;
 }
-
 
 
 </style>
