@@ -113,8 +113,8 @@ export default {
 
         getData() {
 
-            // fetch('https://app.ovnstable.io/api/widget/distribution-rate')
-            fetch('http://localhost:3000/api/widget/distribution-rate')
+            fetch('https://app.ovnstable.io/api/widget/distribution-rate')
+            // fetch('http://localhost:3000/api/widget/distribution-rate')
                 .then(value => value.json())
                 .then(value => {
                     this.fillData(value)
