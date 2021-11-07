@@ -48,6 +48,18 @@ export default {
             },
             tooltips: {
                 enabled: false
+            },
+            scales: {
+                yAxes: [
+                    {
+                        ticks: {
+                            callback: function(label ) {
+                                return label+'%';
+                            }
+                        },
+
+                    }
+                ]
             }
         },
 

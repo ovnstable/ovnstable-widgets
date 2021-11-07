@@ -4,27 +4,16 @@
             <img alt="Ovn logo" src="../assets/ovn.png">
         </div>
         <div class="title" @click="clickLogo">
-            <a class="link">Polybor Overnight</a>
-            <p class="sub-title">Week Average</p>
+            <a class="link">Polybor Overnight Rate Distribution</a>
         </div>
 
-        <template v-if="item">
-            <div class="lastest">
-                {{ item.latest }}%
-            </div>
-            <div class="changes" v-bind:class="{ up: dayUp}">
-                {{ dayUp ? '+' : '' }}
-                <span>{{ item.day }}% 1D</span>
-            </div>
-            <div class="changes" style="margin-top: 5px" v-bind:class="{ up: weekUp}">
-                {{ weekUp ? '+' : '' }}
-                <span>{{ item.week }}% 7D</span>
-            </div>
+        <template v-if="chartdata">
+            <line-bar-chart :chartdata="chartdata" :options="options"/>
         </template>
-        <template v-else >
+        <template v-else>
             <div class="loader"></div>
         </template>
-
+        Frequency buckets
         <div class="signature" @click="clickLogo">
             <div class="powered-by">Powered by</div>
             <div class="powered">ovnstable.io</div>
@@ -33,27 +22,49 @@
 </template>
 
 <script>
+import LineBarChart from "@/charts/LineBarChart";
+
 export default {
-    name: 'DistributionRate',
+    name: 'InterestRate',
+    components: {LineBarChart},
     props: {
         msg: String
     },
 
 
-    computed: {
-
-        weekUp: function () {
-            return this.item.week > 0;
-        },
-        dayUp: function () {
-            return this.item.day > 0;
-        }
-    },
-
     data: () => ({
         loading: true,
-        item: null,
+        chartdata: null,
+
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            elements: {
+                line: {
+                    tension: 0
+                }
+            },
+
+            tooltips: {
+                enabled: false
+            },
+            scales: {
+                yAxes: [
+                    {
+                        ticks: {
+                            callback: function(label ) {
+                                return label+'%';
+                            }
+                        },
+
+                    }
+                ]
+            }
+        },
+
     }),
+
+    computed: {},
 
 
     created() {
@@ -62,13 +73,51 @@ export default {
 
     methods: {
 
+        fillData(value) {
+
+
+            let labels = [];
+            let ovnDist = [];
+            let normalDist = [];
+
+
+            for (let i = 0; i < value.length; i++) {
+                let element = value[i];
+                labels.push(element.label)
+                ovnDist.push(element.ovnDist)
+                normalDist.push(element.normalDist)
+            }
+
+
+            let result = {
+                datasets: [{
+                    type: 'bar',
+                    order: 2,
+                    backgroundColor: '#f56659',
+                    label: 'Polybor Overnight rate distribution (%)',
+                    data: ovnDist,
+                }, {
+                    type: 'line',
+                    fill: false,
+                    borderColor: '#69a5fd',
+                    label: 'Normal Distribution',
+                    data: normalDist,
+                    order: 1,
+                }],
+                labels: labels,
+            }
+
+            this.chartdata = result;
+
+        },
+
         getData() {
 
-            // fetch('https://app.ovnstable.io/api/widget/polybor-week')
-            fetch('http://localhost:3000/api/widget/polybor-week')
+            // fetch('https://app.ovnstable.io/api/widget/distribution-rate')
+            fetch('http://localhost:3000/api/widget/distribution-rate')
                 .then(value => value.json())
                 .then(value => {
-                    this.item = value;
+                    this.fillData(value)
                     this.loading = false;
                 }).catch(reason => {
                 console.log('Error get data: ' + reason)
@@ -93,14 +142,14 @@ export default {
 
 .powered {
     font-weight: 500;
-    font-size: 11px;
+    font-size: 15px;
     color: #111111;
     margin-right: 5px;
 }
 
 .powered-by {
     font-weight: 500;
-    font-size: 11px;
+    font-size: 15px;
     color: #808a9d;
     margin-right: 5px;
 }
@@ -118,8 +167,12 @@ export default {
 }
 
 @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
 .up {
@@ -156,7 +209,7 @@ a:visited {
 
 .main {
     font-style: normal;
-    width: 141px;
+    width: 100%;
     padding: 16px;
     background: #fff;
     border-radius: 16px;
@@ -165,16 +218,6 @@ a:visited {
     display: inline-block;
     margin-right: 16px;
     text-align: center;
-}
-
-.link{
-    font-size: 16px;
-}
-
-.sub-title{
-    font-size: 14px;
-    margin-top: 5px;
-    margin-bottom: 0;
 }
 
 .lastest {
@@ -188,14 +231,13 @@ a:visited {
 
 .title {
     font-weight: 600;
-    font-size: 16px;
+    font-size: 18px;
     line-height: 1.2;
     color: #1e1e1e;
     overflow: hidden;
     text-overflow: ellipsis;
     cursor: pointer;
 }
-
 
 
 </style>
