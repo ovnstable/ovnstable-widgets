@@ -64,8 +64,7 @@ export default {
 
         getData() {
 
-            fetch('https://app.ovnstable.io/api/widget/polybor-week')
-            // fetch('http://localhost:3000/api/widget/polybor-week')
+            fetch(process.env.VUE_APP_WIDGET_API_URL + '/widget/polybor-week')
                 .then(value => value.json())
                 .then(value => {
                     this.item = value;

@@ -109,8 +109,7 @@ export default {
 
         getData() {
 
-            fetch('https://app.ovnstable.io/api/widget/distribution-rate')
-            // fetch('http://localhost:3000/api/widget/distribution-rate')
+            fetch(process.env.VUE_APP_WIDGET_API_URL + '/widget/distribution-rate')
                 .then(value => value.json())
                 .then(value => {
                     this.fillData(value)
