@@ -1,19 +1,41 @@
 <!DOCTYPE html>
 <html lang="">
-  <head>
+<head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <title>TEST WIDGET OVN</title>
-  </head>
-  <body>
-    TEST WIDGET:
+</head>
+<body>
 
-    <ovn-widget type="polybor"></ovn-widget>
-    <ovn-widget type="polybor-week"></ovn-widget>
+<div class="">
+    <script src="https://widget.ovnstable.io/polybor.js"></script>
 
-    <script src="https://widget.ovnstable.io/rate.js"></script>
-    <ovn-widget-rate type="interest"></ovn-widget-rate>
-    <ovn-widget-rate type="distribution"></ovn-widget-rate>
-  </body>
+    <div style="display: inline-block">
+        <ovn-widget type="polybor"></ovn-widget>
+    </div>
+    <div style="display: inline-block">
+        <ovn-widget type="polybor-week"></ovn-widget>
+    </div>
+
+    <div style="display: inline-block">
+        <script src="https://widget.ovnstable.io/table.js"></script>
+        <ovn-widget-table type="polybor-weeks"></ovn-widget-table>
+    </div>
+
+
+<!--    <div style="display: block"></div>-->
+
+<!--    <div style="margin-left: auto; margin-right: auto">-->
+<!--        <script src="https://widget.ovnstable.io/rate.js"></script>-->
+<!--        <div style="display: inline-block">-->
+<!--            <ovn-widget-rate type="interest"></ovn-widget-rate>-->
+<!--        </div>-->
+<!--        <div style="display: inline-block">-->
+<!--            <ovn-widget-rate type="distribution"></ovn-widget-rate>-->
+<!--        </div>-->
+<!--    </div>-->
+</div>
+
+</body>
 </html>

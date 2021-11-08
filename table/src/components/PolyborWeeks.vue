@@ -9,32 +9,34 @@
         </div>
 
         <template v-if="!loading">
-            <div class="table_wrapper">
-            <table class="table-ovn">
+            <table style="margin-top: 10px">
+                <thead>
                 <tr class="table-header">
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th class="table-sub-header" colspan="2">52-Week</th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                    <th scope="col" class="table-sub-header" colspan="2">52-Week</th>
                 </tr>
                 <tr class="table-header table-tr">
-                    <th></th>
-                    <th>Latest</th>
-                    <th>Week ago</th>
-                    <th>High</th>
-                    <th>Low</th>
+                    <th scope="col"></th>
+                    <th scope="col">Latest</th>
+                    <th scope="col">Week ago</th>
+                    <th scope="col">High</th>
+                    <th scope="col">Low</th>
                 </tr>
-                <tr class="table-tr"  v-bind:key="item.id" v-for="item in items">
-                    <td style="text-align: start">{{item.label}}</td>
-                    <td>{{item.latest}}%</td>
-                    <td>{{item.weekAgo}}%</td>
-                    <td>{{item.high}}%</td>
-                    <td>{{item.low}}%</td>
+                </thead>
+                <tbody>
+                <tr class="table-tr" v-bind:key="item.id" v-for="item in items">
+                    <td data-label="" >{{ item.label }}</td>
+                    <td data-label="Latest">{{ item.latest }}%</td>
+                    <td data-label="Week ago">{{ item.weekAgo }}%</td>
+                    <td data-label="High">{{ item.high }}%</td>
+                    <td data-label="Low">{{ item.low }}%</td>
                 </tr>
+                </tbody>
             </table>
-            </div>
         </template>
-        <template v-else >
+        <template v-else>
             <div class="loader"></div>
         </template>
 
@@ -53,10 +55,7 @@ export default {
     },
 
 
-    computed: {
-
-
-    },
+    computed: {},
 
     data: () => ({
         loading: true,
@@ -125,13 +124,14 @@ export default {
 }
 
 @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
-.up {
-    background-color: #16c784 !important;
-}
 
 .table-ovn {
     margin-top: 15px;
@@ -174,22 +174,17 @@ a:visited {
     text-decoration: none;
 }
 
-.changes {
-    height: 21px;
-    display: inline-block;
-    align-items: center;
-    font-weight: 600;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    font-size: 12px;
-    line-height: 21px;
-    color: #fff;
-    border-radius: 8px;
-    padding: 0px 6px;
-    background-color: #ea3943;
+
+@media screen and (max-width: 767px) {
+    table tr > * {
+        display: block;
+    }
+
+    table tr {
+        display: table-cell;
+    }
 }
+
 
 .main {
     width: 100%;
@@ -204,24 +199,16 @@ a:visited {
     text-align: center;
 }
 
-.link{
+.link {
     font-size: 16px;
 }
 
-.sub-title{
+.sub-title {
     font-size: 14px;
     margin-top: 5px;
     margin-bottom: 0;
 }
 
-.lastest {
-    font-weight: 500;
-    font-size: 16px;
-    line-height: 1;
-    margin-top: 10px;
-    color: #58667e;
-    padding-bottom: 16px;
-}
 
 .title {
     font-weight: 600;
@@ -234,10 +221,88 @@ a:visited {
 }
 
 
-.table_wrapper{
+.table_wrapper {
     display: block;
     overflow-x: auto;
     white-space: nowrap;
 }
+
+
+table {
+    border: 1px solid #ccc;
+    border-collapse: collapse;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    table-layout: fixed;
+}
+
+
+table tr {
+    border: 1px solid #ddd;
+    padding: .35em;
+}
+
+table th,
+table td {
+    padding: .625em;
+    text-align: center;
+}
+
+table th {
+    font-size: .85em;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+}
+
+@media screen and (max-width: 600px) {
+    table {
+        border: 0;
+    }
+
+    table caption {
+        font-size: 1.3em;
+    }
+
+    table thead {
+        border: none;
+        clip: rect(0 0 0 0);
+        height: 1px;
+        margin: -1px;
+        overflow: hidden;
+        padding: 0;
+        position: absolute;
+        width: 1px;
+    }
+
+    table tr {
+        border-bottom: 3px solid #ddd;
+        display: block;
+        margin-bottom: .625em;
+    }
+
+    table td {
+        border-bottom: 1px solid #ddd;
+        display: block;
+        font-size: .8em;
+        text-align: right;
+    }
+
+    table td::before {
+        /*
+        * aria-label has no advantage, it won't be read inside a table
+        content: attr(aria-label);
+        */
+        content: attr(data-label);
+        float: left;
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+
+    table td:last-child {
+        border-bottom: 0;
+    }
+}
+
 
 </style>
