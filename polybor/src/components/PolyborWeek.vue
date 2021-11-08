@@ -162,7 +162,7 @@ a:visited {
     box-shadow: #e1e5ea 0px 1px 6px 0px;
     box-sizing: border-box;
     display: inline-block;
-    margin-right: 16px;
+
     text-align: center;
 }
 

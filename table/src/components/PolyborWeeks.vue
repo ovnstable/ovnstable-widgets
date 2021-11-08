@@ -5,20 +5,32 @@
         </div>
         <div class="title" @click="clickLogo">
             <a class="link">Polybor Overnight</a>
+            <p class="sub-title">Interest rate table</p>
         </div>
 
-        <template v-if="item">
-            <div class="lastest">
-                {{ item.latest }}%
-            </div>
-            <div class="changes" v-bind:class="{ up: dayUp}">
-                {{ dayUp ? '+' : '' }}
-                <span>{{ item.day }}% 1D</span>
-            </div>
-            <div class="changes" style="margin-top: 5px" v-bind:class="{ up: weekUp}">
-                {{ weekUp ? '+' : '' }}
-                <span>{{ item.week }}% 7D</span>
-            </div>
+        <template v-if="!loading">
+            <table class="table-ovn">
+                <tr>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th colspan="2">52-Week</th>
+                </tr>
+                <tr>
+                    <th></th>
+                    <th>Latest</th>
+                    <th>Week ago</th>
+                    <th>High</th>
+                    <th>Low</th>
+                </tr>
+                <tr  v-bind:key="item.id" v-for="item in items">
+                    <td style="text-align: start">{{item.label}}</td>
+                    <td>{{item.latest}}%</td>
+                    <td>{{item.weekAgo}}%</td>
+                    <td>{{item.high}}%</td>
+                    <td>{{item.low}}%</td>
+                </tr>
+            </table>
         </template>
         <template v-else >
             <div class="loader"></div>
@@ -33,7 +45,7 @@
 
 <script>
 export default {
-    name: 'Polybor',
+    name: 'PolyborWeeks',
     props: {
         msg: String
     },
@@ -41,17 +53,12 @@ export default {
 
     computed: {
 
-        weekUp: function () {
-            return this.item.week > 0;
-        },
-        dayUp: function () {
-            return this.item.day > 0;
-        }
+
     },
 
     data: () => ({
         loading: true,
-        item: null,
+        items: null,
     }),
 
 
@@ -62,11 +69,11 @@ export default {
     methods: {
 
         getData() {
-
-            fetch(process.env.VUE_APP_WIDGET_API_URL + '/widget/polybor')
+            this.loading = true;
+            fetch(process.env.VUE_APP_WIDGET_API_URL + '/widget/polybor-weeks')
                 .then(value => value.json())
                 .then(value => {
-                    this.item = value;
+                    this.items = value;
                     this.loading = false;
                 }).catch(reason => {
                 console.log('Error get data: ' + reason)
@@ -124,6 +131,13 @@ export default {
     background-color: #16c784 !important;
 }
 
+.table-ovn {
+    margin-top: 15px;
+    width: 100%;
+    border: 1px solid #dedede;
+    border-radius: 10px;
+    padding: 15px;
+}
 
 a:link {
     color: #131313;
@@ -154,7 +168,7 @@ a:visited {
 
 .main {
     font-style: normal;
-    width: 141px;
+    width: 600px;
     padding: 16px;
     background: #fff;
     border-radius: 16px;
@@ -163,6 +177,16 @@ a:visited {
     display: inline-block;
 
     text-align: center;
+}
+
+.link{
+    font-size: 16px;
+}
+
+.sub-title{
+    font-size: 14px;
+    margin-top: 5px;
+    margin-bottom: 0;
 }
 
 .lastest {
