@@ -10,20 +10,20 @@
 
         <template v-if="!loading">
             <table class="table-ovn">
-                <tr>
+                <tr class="table-header">
                     <th></th>
                     <th></th>
                     <th></th>
-                    <th colspan="2">52-Week</th>
+                    <th class="table-sub-header" colspan="2">52-Week</th>
                 </tr>
-                <tr>
+                <tr class="table-header table-tr">
                     <th></th>
                     <th>Latest</th>
                     <th>Week ago</th>
                     <th>High</th>
                     <th>Low</th>
                 </tr>
-                <tr  v-bind:key="item.id" v-for="item in items">
+                <tr class="table-tr"  v-bind:key="item.id" v-for="item in items">
                     <td style="text-align: start">{{item.label}}</td>
                     <td>{{item.latest}}%</td>
                     <td>{{item.weekAgo}}%</td>
@@ -134,8 +134,28 @@ export default {
 .table-ovn {
     margin-top: 15px;
     width: 100%;
-    border: 1px solid #dedede;
-    border-radius: 10px;
+    border-radius: 5px;
+    padding: 15px;
+    border-collapse: collapse;
+
+}
+
+
+.table-sub-header {
+    border-bottom: 1pt solid #c7c7c7;
+    color: #1e1e1e;
+    font-weight: bold;
+}
+
+.table-header {
+    color: #9d9d9d;
+}
+
+.table-tr {
+    border-bottom: 1pt solid #c7c7c7;
+}
+
+.table-ovn td {
     padding: 15px;
 }
 
