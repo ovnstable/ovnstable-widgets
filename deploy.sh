@@ -18,8 +18,9 @@ npm run build
 cd ..
 find rate/dist/js/ -type f -name '*.js' -exec sh -c 'x="{}"; mv "$x" "rate/dist/js/rate.js"' \;
 
-docker build . -t cr.yandex/crpg11k469bhc8lch9gm/overnight/widget:$tag
 
+cd table || exit
+npm run build
 
 cd ..
 find table/dist/js/ -type f -name '*.js' -exec sh -c 'x="{}"; mv "$x" "table/dist/js/table.js"' \;

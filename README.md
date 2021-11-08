@@ -1,6 +1,9 @@
 # ovn-widgets
 
 
+How to use: 
+https://ovnstable.io/widgets-tutorial
+
 ## Polybor Widget
 
 
