@@ -9,6 +9,7 @@
         </div>
 
         <template v-if="!loading">
+            <div class="table_wrapper">
             <table class="table-ovn">
                 <tr class="table-header">
                     <th></th>
@@ -31,6 +32,7 @@
                     <td>{{item.low}}%</td>
                 </tr>
             </table>
+            </div>
         </template>
         <template v-else >
             <div class="loader"></div>
@@ -137,7 +139,10 @@ export default {
     border-radius: 5px;
     padding: 15px;
     border-collapse: collapse;
-
+    overflow: auto;
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
 }
 
 
@@ -187,15 +192,15 @@ a:visited {
 }
 
 .main {
+    width: 100%;
+    max-width: 700px;
     font-style: normal;
-    width: 700px;
     padding: 16px;
     background: #fff;
     border-radius: 16px;
     box-shadow: #e1e5ea 0px 1px 6px 0px;
     box-sizing: border-box;
     display: inline-block;
-
     text-align: center;
 }
 
@@ -229,5 +234,10 @@ a:visited {
 }
 
 
+.table_wrapper{
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+}
 
 </style>
