@@ -155,7 +155,7 @@ a:visited {
 
 .main {
     font-style: normal;
-    width: 141px;
+    width: 161px;
     padding: 16px;
     background: #fff;
     border-radius: 16px;
