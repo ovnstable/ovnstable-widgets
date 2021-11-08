@@ -121,7 +121,7 @@ export default {
         },
 
         clickLogo() {
-            window.open('https://app.ovnstable.io/fund', '_blank').focus();
+            window.open(process.env.VUE_APP_GO_TO_URL, '_blank').focus();
         },
     }
 }

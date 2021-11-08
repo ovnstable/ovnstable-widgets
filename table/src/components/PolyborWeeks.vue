@@ -82,7 +82,7 @@ export default {
         },
 
         clickLogo() {
-            window.open('https://app.ovnstable.io/fund', '_blank').focus();
+            window.open(process.env.VUE_APP_GO_TO_URL, '_blank').focus();
         },
     }
 }
@@ -168,7 +168,7 @@ a:visited {
 
 .main {
     font-style: normal;
-    width: 600px;
+    width: 700px;
     padding: 16px;
     background: #fff;
     border-radius: 16px;

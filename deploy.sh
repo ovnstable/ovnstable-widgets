@@ -21,6 +21,12 @@ find rate/dist/js/ -type f -name '*.js' -exec sh -c 'x="{}"; mv "$x" "rate/dist/
 docker build . -t cr.yandex/crpg11k469bhc8lch9gm/overnight/widget:$tag
 
 
+cd ..
+find table/dist/js/ -type f -name '*.js' -exec sh -c 'x="{}"; mv "$x" "table/dist/js/table.js"' \;
+
+docker build . -t cr.yandex/crpg11k469bhc8lch9gm/overnight/widget:$tag
+
+
 docker login \
          --username oauth \
          --password $token \
