@@ -1,5 +1,6 @@
-const dotenv = require('dotenv');
-dotenv.config();
+require('dotenv').config({ path: `.env.${process.env.NODE_ENV}` })
+console.log('NODE_ENV: ' + process.env.NODE_ENV)
+
 let debug = require('debug')('server')
 
 const widget = require('./logic.js')

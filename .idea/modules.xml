@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/ovn-widget.iml" filepath="$PROJECT_DIR$/ovn-widget.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/ovn-widget.iml" filepath="$PROJECT_DIR$/.idea/ovn-widget.iml" />
     </modules>
   </component>
 </project>
