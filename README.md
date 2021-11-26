@@ -7,31 +7,20 @@ https://ovnstable.io/widgets-tutorial
 ## Polybor Widget
 
 
-`
-<ovn-widget type="polybor"></ovn-widget>
-`
-
-![img.png](images/img.png)
+Demo widgets:
+https://ovnstable.io/widgets-tutorial
 
 
-`
-<ovn-widget type="polybor-week"></ovn-widget>
-`
-
-![img_1.png](images/img_1.png)
+## How to deploy? 
 
 
-## Rate
+### Deploy Back
+
+1) `cd back`
+2) `sh deploy.sh $token (yandex-token) $user:ip-addr (ssh)` 
 
 
-`
-<ovn-widget-rate type="distribution"></ovn-widget-rate>
-`
+### Deploy Front
 
-![img.png](images/img_2.png)
-
-`
-<ovn-widget-rate type="interest"></ovn-widget-rate>
-`
-
-![img.png](images/img_3.png)
+1) `cd front`
+2) `sh deploy.sh $token (yandex-token) $user:ip-addr (ssh)` 
