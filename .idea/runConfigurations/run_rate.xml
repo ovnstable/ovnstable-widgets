@@ -1,6 +1,6 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="run-polybor" type="js.build_tools.npm">
-    <package-json value="$PROJECT_DIR$/front/polybor/package.json" />
+  <configuration default="false" name="run-rate" type="js.build_tools.npm">
+    <package-json value="$PROJECT_DIR$/front/rate/package.json" />
     <command value="run" />
     <scripts>
       <script value="serve" />
