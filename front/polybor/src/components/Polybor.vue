@@ -8,7 +8,7 @@
         </div>
 
         <template v-if="item">
-            <div class="lastest">
+            <div class="latest">
                 {{ item.latest }}%
             </div>
             <div class="changes" v-bind:class="{ up: dayUp}">
@@ -63,10 +63,16 @@ export default {
 
         getData() {
 
-            fetch(process.env.VUE_APP_WIDGET_API_URL + '/widget/polybor')
+            let fetchOptions = {
+                headers: {
+                    "Access-Control-Allow-Origin": process.env.VUE_APP_WIDGET_API_URL
+                }
+            };
+
+            fetch(process.env.VUE_APP_WIDGET_API_URL + '/widget/polybor', fetchOptions)
                 .then(value => value.json())
                 .then(value => {
-                    this.item = value;
+                    this.item = value[0];
                     this.loading = false;
                 }).catch(reason => {
                 console.log('Error get data: ' + reason)
@@ -166,7 +172,7 @@ a:visited {
     text-align: center;
 }
 
-.lastest {
+.latest {
     font-weight: 500;
     font-size: 16px;
     line-height: 1;

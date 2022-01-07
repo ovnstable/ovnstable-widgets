@@ -103,7 +103,14 @@ export default {
         },
 
         getData() {
-            fetch(process.env.VUE_APP_WIDGET_API_URL + '/widget/interest-rate')
+
+            let fetchOptions = {
+                headers: {
+                    "Access-Control-Allow-Origin": process.env.VUE_APP_WIDGET_API_URL
+                }
+            };
+
+            fetch(process.env.VUE_APP_WIDGET_API_URL + '/widget/interest-rate', fetchOptions)
                 .then(value => value.json())
                 .then(value => {
                     this.fillData(value)

@@ -71,7 +71,14 @@ export default {
 
         getData() {
             this.loading = true;
-            fetch(process.env.VUE_APP_WIDGET_API_URL + '/widget/polybor-weeks')
+
+            let fetchOptions = {
+                headers: {
+                    "Access-Control-Allow-Origin": process.env.VUE_APP_WIDGET_API_URL
+                }
+            };
+
+            fetch(process.env.VUE_APP_WIDGET_API_URL + '/widget/polybor-weeks', fetchOptions)
                 .then(value => value.json())
                 .then(value => {
                     this.items = value;

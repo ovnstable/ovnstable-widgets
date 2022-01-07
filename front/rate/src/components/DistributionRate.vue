@@ -109,7 +109,13 @@ export default {
 
         getData() {
 
-            fetch(process.env.VUE_APP_WIDGET_API_URL + '/widget/distribution-rate')
+            let fetchOptions = {
+                headers: {
+                    "Access-Control-Allow-Origin": process.env.VUE_APP_WIDGET_API_URL
+                }
+            };
+
+            fetch(process.env.VUE_APP_WIDGET_API_URL + '/widget/distribution-rate', fetchOptions)
                 .then(value => value.json())
                 .then(value => {
                     this.fillData(value)
