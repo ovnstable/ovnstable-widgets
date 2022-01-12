@@ -1,7 +1,5 @@
 <template>
     <div class="main">
-
-        <!-- TODO: change header -->
         <div>
             <img width="37px" alt="Ovn logo" src="../assets/ovn_logo.png">
             <label class="title" @click="clickLogo">
@@ -10,15 +8,13 @@
                 Portfolio
             </label>
         </div>
-<!--        <div class="title" @click="clickLogo">
-            <a class="link">Polybor Overnight Portfolio</a>
-        </div>-->
 
-        <template v-if="data">
-            <v-row>
+        <template v-if="dataAssets || dataStrategies">
+            <v-row v-if="dataAssets">
                 <Doughnut
-                        ref="doughnut_chart"
-                        :data="data"
+                        style="margin-left: -50px;"
+                        refer="doughnut_assets"
+                        :data="dataAssets"
                         :height="doughnutHeight"
                         :animated="animated"
                         :percentsOnly="percentsOnly"
@@ -27,6 +23,21 @@
                         :legend="showLegend"
                         :color="theme ? '#101A26' : 'white'"
                         title="Assets"
+                />
+            </v-row>
+            <v-row v-if="dataStrategies" :style="{'margin-top': dataAssets ? '-120px' : '0px'}">
+                <Doughnut
+                        style="margin-left: -50px;"
+                        refer="doughnut_strategies"
+                        :data="dataStrategies"
+                        :height="doughnutHeight"
+                        :animated="animated"
+                        :percentsOnly="percentsOnly"
+                        :diffuse="diffuse"
+                        :dark="!theme"
+                        :legend="showLegend"
+                        :color="theme ? '#101A26' : 'white'"
+                        title="Strategies"
                 />
             </v-row>
         </template>
@@ -43,14 +54,15 @@
 <script>
 
 import Doughnut from "../charts/Doughnut";
+
 export default {
     name: 'DoughnutChart',
+
     components: {
         Doughnut
     },
-    props: {
-    },
 
+    props: {},
 
     data: () => ({
         loading: true,
@@ -73,40 +85,85 @@ export default {
             "#EB5062",
         ],
 
-        data: [],
+        dataAssets: [],
+        dataStrategies: [],
     }),
 
     computed: {},
 
-
     created() {
-        this.getData();
+        this.getAssetsData();
+        this.getStrategiesData();
     },
 
     methods: {
 
-        fillData(value) {
+        fillAssetsData(value) {
             let result = [];
 
             for (let i = 0; i < value.length; i++) {
                 let element = value[i];
-                result.push({title: element.id.active, value: element.netAssetValue, color: this.colors[i]})
+
+                result.push(
+                    {
+                        title: element.title,
+                        value: element.value,
+                        color: this.colors[i],
+                    }
+                );
             }
 
-            this.data = result;
+            this.dataAssets = result;
         },
 
-        getData() {
+        getAssetsData() {
             let fetchOptions = {
                 headers: {
                     "Access-Control-Allow-Origin": process.env.VUE_APP_WIDGET_API_URL
                 }
             };
 
-            fetch(process.env.VUE_APP_WIDGET_API_URL + '/widget/doughnut', fetchOptions)
+            fetch(process.env.VUE_APP_WIDGET_API_URL + '/widget/doughnut-assets', fetchOptions)
                 .then(value => value.json())
                 .then(value => {
-                    this.fillData(value)
+                    this.fillAssetsData(value)
+                    this.loading = false;
+                }).catch(reason => {
+                console.log('Error get data: ' + reason)
+                this.loading = false;
+            })
+        },
+
+        fillStrategiesData(value) {
+            let result = [];
+
+            for (let i = 0; i < value.length; i++) {
+                let element = value[i];
+
+                result.push(
+                    {
+                        title: element.title,
+                        value: element.value,
+                        color: this.colors[(this.colors.length / 2 + i) % this.colors.length],
+                        link: element.link ? 'https://polygonscan.com/address/' + element.link : ''
+                    }
+                );
+            }
+
+            this.dataStrategies = result;
+        },
+
+        getStrategiesData() {
+            let fetchOptions = {
+                headers: {
+                    "Access-Control-Allow-Origin": process.env.VUE_APP_WIDGET_API_URL
+                }
+            };
+
+            fetch(process.env.VUE_APP_WIDGET_API_URL + '/widget/doughnut-strategies', fetchOptions)
+                .then(value => value.json())
+                .then(value => {
+                    this.fillStrategiesData(value)
                     this.loading = false;
                 }).catch(reason => {
                 console.log('Error get data: ' + reason)
@@ -116,7 +173,7 @@ export default {
 
         clickLogo() {
             window.open(process.env.VUE_APP_GO_TO_URL, '_blank').focus();
-        },
+        }
     }
 }
 </script>

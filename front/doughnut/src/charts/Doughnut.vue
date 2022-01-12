@@ -3,23 +3,30 @@
     <div>
         <v-row>
             <v-col>
-                <div id="chart_div" ref="chart_div" :style="'--background: ' + background"></div>
+                <div :id="refer" :ref="refer" :style="'--background: ' + background"></div>
             </v-col>
-            <v-col v-if="legend">
-                <div style="margin-top: 76px;">
-                    <div v-for="item in data" :key="item.title" align="left" style="margin-top: 10px;">
-                        <label :style="{'color': item.color, 'font-size': fontSize + 'px', 'line-height': fontSize + 'px'}">
-                            {{ item.title }}
-                        </label>
-
-                        <label :style="{'color': color, 'font-size': fontSize + 'px', 'line-height': fontSize + 'px'}">
-                            {{
-                                percentsOnly
-                                        ? (' &#8210; ' + getPercent(item, data) + '%')
-                                        : (' &#8210; ' + item.value + ' (' + getPercent(item, data) + '%)')
-                            }}
-                        </label>
-                    </div>
+            <v-col v-if="legend" style="margin-left: -50px; width: 220px">
+                <div style="margin-top: 68px;">
+                    <table style="border-collapse:separate; border-spacing: 0 10px; width: 100%">
+                        <tr v-for="item in data" :key="item.title">
+                            <td align="left">
+                                <label @click="openInNewTab(item.link)"
+                                   :style="{'color': item.color, 'font-size': fontSize + 'px', 'line-height': fontSize + 'px', 'cursor': item.link ? 'pointer' : 'default'}"
+                                   style="text-decoration: none">
+                                    {{ item.title }}
+                                </label>
+                            </td>
+                            <td align="left">
+                                <label :style="{'color': color, 'font-size': fontSize + 'px', 'line-height': fontSize + 'px'}">
+                                    {{
+                                        percentsOnly
+                                                ? ('&nbsp;' + getPercent(item, data) + '%')
+                                                : ('&nbsp;' + item.value + ' (' + getPercent(item, data) + '%)')
+                                    }}
+                                </label>
+                            </td>
+                        </tr>
+                    </table>
                 </div>
             </v-col>
         </v-row>
@@ -38,6 +45,11 @@ export default {
     name: "Doughnut",
 
     props: {
+        refer: {
+            type: String,
+            default: "chart_div",
+        },
+
         height: {
             type: Number,
             default: 400,
@@ -96,6 +108,10 @@ export default {
     },
 
     watch: {
+        refer: function (newVal, oldVal) {
+            this.redraw();
+        },
+
         height: function (newVal, oldVal) {
             this.redraw();
         },
@@ -173,10 +189,10 @@ export default {
         },
 
         redraw() {
-            this.$refs.chart_div.style.height = this.height + "px";
-            this.$refs.chart_div.style.width = this.height + "px";
+            this.$refs[this.refer].style.height = this.height + "px";
+            this.$refs[this.refer].style.width = this.height + "px";
 
-            let chart = AmCharts.makeChart("chart_div",
+            let chart = AmCharts.makeChart(this.refer,
                 {
                     "type": "pie",
 
@@ -188,7 +204,6 @@ export default {
 
                     "gradientRatio": this.diffuse ? (this.dark ? [-1, -1, -0.75, -0.5, 0] : [1, 1, 0.75, 0.5, 0]) : [],
 
-                    // "backgroundColor": this.background,
                     "backgroundColor": "rgba(0, 0, 0, 0)",
 
                     "backgroundAlpha": 0,
@@ -229,6 +244,12 @@ export default {
 
             this.callbackRefresh();
         },
+
+        openInNewTab(url) {
+            if (url && url !== '') {
+                window.open(url, '_blank').focus();
+            }
+        }
     }
 }
 </script>
