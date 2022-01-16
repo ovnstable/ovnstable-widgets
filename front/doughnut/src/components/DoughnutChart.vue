@@ -9,23 +9,8 @@
             </label>
         </div>
 
-        <template v-if="dataAssets || dataStrategies">
-            <v-row v-if="dataAssets">
-                <Doughnut
-                        style="margin-left: -50px;"
-                        refer="doughnut_assets"
-                        :data="dataAssets"
-                        :height="doughnutHeight"
-                        :animated="animated"
-                        :percentsOnly="percentsOnly"
-                        :diffuse="diffuse"
-                        :dark="!theme"
-                        :legend="showLegend"
-                        :color="theme ? '#101A26' : 'white'"
-                        title="Assets"
-                />
-            </v-row>
-            <v-row v-if="dataStrategies" :style="{'margin-top': dataAssets ? '-120px' : '0px'}">
+        <template v-if="dataStrategies || dataAssets">
+            <v-row v-if="dataStrategies">
                 <Doughnut
                         style="margin-left: -50px;"
                         refer="doughnut_strategies"
@@ -38,6 +23,21 @@
                         :legend="showLegend"
                         :color="theme ? '#101A26' : 'white'"
                         title="Strategies"
+                />
+            </v-row>
+            <v-row v-if="dataAssets" :style="{'margin-top': dataStrategies ? '-120px' : '0px'}">
+                <Doughnut
+                        style="margin-left: -50px;"
+                        refer="doughnut_assets"
+                        :data="dataAssets"
+                        :height="doughnutHeight"
+                        :animated="animated"
+                        :percentsOnly="percentsOnly"
+                        :diffuse="diffuse"
+                        :dark="!theme"
+                        :legend="showLegend"
+                        :color="theme ? '#101A26' : 'white'"
+                        title="Stablecoins"
                 />
             </v-row>
         </template>
@@ -75,8 +75,8 @@ export default {
         showLegend: true,
 
         colors: [
-            "#FCCA46",
             "#51FF00",
+            "#FCCA46",
             "#4469EB",
             "#A55BEB",
             "#5093EB",
@@ -108,7 +108,7 @@ export default {
                     {
                         title: element.title,
                         value: element.value,
-                        color: this.colors[i],
+                        color: this.colors[(this.colors.length / 2 + i) % this.colors.length],
                     }
                 );
             }
@@ -144,7 +144,7 @@ export default {
                     {
                         title: element.title,
                         value: element.value,
-                        color: this.colors[(this.colors.length / 2 + i) % this.colors.length],
+                        color: this.colors[i],
                         link: element.link ? 'https://polygonscan.com/address/' + element.link : ''
                     }
                 );

@@ -7,4 +7,8 @@ module.exports = {
             splitChunks: false
         }
     },
+
+    transpileDependencies: [
+        'vuetify'
+    ]
 }

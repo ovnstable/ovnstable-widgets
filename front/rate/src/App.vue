@@ -14,9 +14,9 @@
 
 <script>
 
-
 import InterestRate from "./components/InterestRate";
 import DistributionRate from "./components/DistributionRate";
+
 export default {
     name: 'App',
     props: {
@@ -41,6 +41,7 @@ export default {
     font-family: Avenir, Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    background-color: transparent;
 }
 
 /* Extra small devices (phones, 600px and down) */
