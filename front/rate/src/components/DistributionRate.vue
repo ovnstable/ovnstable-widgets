@@ -1,19 +1,20 @@
 <template>
     <div class="main">
         <div>
-            <img alt="Ovn logo" src="../assets/ovn.png">
-        </div>
-        <div class="title" @click="clickLogo">
-            <a class="link">Polybor Overnight Rate Distribution</a>
+            <img width="37px" alt="Ovn logo" src="../assets/ovn_logo.png">
+            <label class="title" @click="clickLogo">
+                Overnight<sup>&reg;</sup>
+                <div class="rectangle"></div>
+                Interest Rate Benchmark
+            </label>
         </div>
 
         <template v-if="chartdata">
-            <line-bar-chart :chartdata="chartdata" :options="options"/>
+            <LineBarChart :data="chartdata"/>
         </template>
         <template v-else>
             <div class="loader"></div>
         </template>
-        Frequency buckets
         <div class="signature" @click="clickLogo">
             <div class="powered-by">Powered by</div>
             <div class="powered">ovnstable.io</div>
@@ -22,11 +23,13 @@
 </template>
 
 <script>
-import LineBarChart from "@/charts/LineBarChart";
+import LineBarChart from "@/charts/apex/LineBarChart";
 
 export default {
     name: 'InterestRate',
-    components: {LineBarChart},
+    components: {
+        LineBarChart,
+    },
     props: {
         msg: String
     },
@@ -35,29 +38,6 @@ export default {
     data: () => ({
         loading: true,
         chartdata: null,
-
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-
-
-            tooltips: {
-                enabled: false
-            },
-            scales: {
-                yAxes: [
-                    {
-                        ticks: {
-                            callback: function(label ) {
-                                return label+'%';
-                            }
-                        },
-
-                    }
-                ]
-            }
-        },
-
     }),
 
     computed: {},
@@ -70,8 +50,6 @@ export default {
     methods: {
 
         fillData(value) {
-
-
             let labels = [];
             let ovnDist = [];
             let normalDist = [];
@@ -84,27 +62,23 @@ export default {
                 normalDist.push(element.normalDist)
             }
 
-
             let result = {
+                labels: labels,
                 datasets: [{
-                    type: 'bar',
-                    order: 2,
-                    backgroundColor: '#f56659',
-                    label: 'Polybor Overnight rate distribution (%)',
-                    data: ovnDist,
-                }, {
                     type: 'line',
                     fill: false,
-                    borderColor: '#69a5fd',
                     label: 'Normal Distribution',
                     data: normalDist,
                     order: 1,
+                }, {
+                    type: 'column',
+                    order: 2,
+                    label: 'Overnight rate distribution',
+                    data: ovnDist,
                 }],
-                labels: labels,
             }
 
             this.chartdata = result;
-
         },
 
         getData() {
@@ -133,18 +107,53 @@ export default {
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
+
 <style scoped>
+
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@700&display=swap');
+
+.title {
+    font-family: 'Raleway', sans-serif;
+    font-size: 32px;
+    color: white;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    cursor: pointer;
+    vertical-align: super;
+}
+
+.title > sup {
+    font-size: 8px;
+    vertical-align: super;
+}
 
 .signature {
     margin-top: 10px;
     cursor: pointer;
 }
 
+.rectangle {
+    display: inline-block;
+    vertical-align: sub;
+    position: static;
+    width: 3px;
+    height: 32px;
+
+    background: #FE7F2D;
+    border-radius: 4px;
+
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+
+    margin-right: 3px;
+    margin-left: 8px;
+}
+
 .powered {
     font-weight: 500;
     font-size: 15px;
-    color: #111111;
+    color: white;
     margin-right: 5px;
 }
 
@@ -176,11 +185,6 @@ export default {
     }
 }
 
-.up {
-    background-color: #16c784 !important;
-}
-
-
 a:link {
     color: #131313;
     text-decoration: none;
@@ -191,54 +195,18 @@ a:visited {
     text-decoration: none;
 }
 
-.changes {
-    height: 21px;
-    display: inline-block;
-    align-items: center;
-    font-weight: 600;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    font-size: 12px;
-    line-height: 21px;
-    color: #fff;
-    border-radius: 8px;
-    padding: 0px 6px;
-    background-color: #ea3943;
-}
-
 .main {
     font-style: normal;
     width: 100%;
     padding: 16px;
-    background: #fff;
-    border-radius: 16px;
     box-shadow: #e1e5ea 0px 1px 6px 0px;
     box-sizing: border-box;
     display: inline-block;
 
+    border-radius: 10px;
+    background-color: #0F1A26;
+
     text-align: center;
 }
-
-.lastest {
-    font-weight: 500;
-    font-size: 16px;
-    line-height: 1;
-    margin-top: 10px;
-    color: #58667e;
-    padding-bottom: 16px;
-}
-
-.title {
-    font-weight: 600;
-    font-size: 18px;
-    line-height: 1.2;
-    color: #1e1e1e;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    cursor: pointer;
-}
-
 
 </style>

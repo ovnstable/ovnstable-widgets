@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div id="chart"></div>
+        <div id="line-bar-chart"></div>
     </div>
 </template>
 
@@ -29,12 +29,10 @@ export default {
 
     components: {},
 
-    data: () => ({
-    }),
+    data: () => ({}),
 
     computed: {
-        ...mapGetters([
-        ]),
+        ...mapGetters([]),
     },
 
     mounted() {
@@ -45,28 +43,39 @@ export default {
     },
 
     methods: {
-        ...mapActions([
-        ]),
+        ...mapActions([]),
 
-        ...mapMutations([
-        ]),
+        ...mapMutations([]),
 
         redraw() {
 
             let values = [];
             this.data.datasets[0].data.forEach(v => values.push(v));
 
+            let valuesColumn = [];
+            this.data.datasets[1].data.forEach(v => valuesColumn.push(v));
+
             let labels = [];
             this.data.labels.forEach(v => labels.push(v));
 
             let options = {
                 series: [{
-                    name: "Rate",
+                    name: this.data.datasets[1].label,
+                    type: 'column',
+                    data: valuesColumn
+                }, {
+                    name: this.data.datasets[0].label,
+                    type: 'area',
                     data: values
                 }],
 
+                plotOptions: {
+                    bar: {
+                        borderRadius: 15,
+                    }
+                },
+
                 chart: {
-                    type: 'area',
                     height: 400,
                     width: 1100,
 
@@ -95,18 +104,15 @@ export default {
                 },
 
                 stroke: {
-                    curve: 'straight',
-                    width: 1,
-                    colors: ["#51FF00"],
+                    curve: 'smooth',
+                    width: [0, 2],
+                    colors: ["#48e400", "#FCCA46"],
                 },
 
                 labels: labels,
 
                 xaxis: {
                     type: 'category',
-
-                    tickAmount: 15,
-                    tickPlacement: 'between',
 
                     labels: {
                         rotate: -45,
@@ -135,21 +141,30 @@ export default {
                         style: {
                             cssClass: 'yaxis-label',
                         },
-                        formatter: (value) => { return value + '%' },
+                        formatter: (value) => {
+                            return value + '%'
+                        },
                     },
                 },
 
                 legend: {
-                    horizontalAlign: 'left'
+                    show: true,
+                    position: 'bottom',
+                    horizontalAlign: 'center',
+                    fontSize: '18px',
+                    fontFamily: "'Raleway', sans-serif",
+                    fontWeight: "normal",
                 },
 
-                colors: ['#48e400'],
+                colors: ["#48e400", "#FCCA46"],
 
                 theme: {
                     mode: 'dark',
                 },
 
                 fill: {
+                    type: ['solid', 'gradient'],
+
                     gradient: {
                         shade: 'dark',
                         type: "vertical",
@@ -163,7 +178,7 @@ export default {
 
             };
 
-            let chart = new ApexCharts(document.querySelector("#chart"), options);
+            let chart = new ApexCharts(document.querySelector("#line-bar-chart"), options);
             chart.render();
         },
     }
