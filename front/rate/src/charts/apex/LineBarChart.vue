@@ -79,7 +79,6 @@ export default {
                     height: 400,
                     width: 1100,
 
-
                     sparkline: {
                         enabled: false,
                     },
@@ -104,7 +103,8 @@ export default {
                 },
 
                 stroke: {
-                    curve: 'smooth',
+                    curve: "straight",
+                    lineCap: "butt",
                     width: [0, 2],
                     colors: ["#48e400", "#FCCA46"],
                 },

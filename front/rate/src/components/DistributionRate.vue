@@ -5,7 +5,7 @@
             <label class="title" @click="clickLogo">
                 Overnight<sup>&reg;</sup>
                 <div class="rectangle"></div>
-                Interest Rate Benchmark
+                USD+ Daily APY Distribution
             </label>
         </div>
 
