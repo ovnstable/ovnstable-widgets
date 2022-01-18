@@ -1,5 +1,32 @@
 <template>
     <div>
+        <v-row style="margin-bottom: 0">
+            <v-spacer></v-spacer>
+            <v-btn
+                    id="week-zoom-btn"
+                    class="zoom-btn"
+                    dark x-small outlined
+                    @click="zoomChart('week')"
+            >
+                <label>Week</label>
+            </v-btn>
+            <v-btn
+                    id="month-zoom-btn"
+                    class="zoom-btn"
+                    dark x-small outlined
+                    @click="zoomChart('month')"
+            >
+                Month
+            </v-btn>
+            <v-btn
+                    id="all-zoom-btn"
+                    class="zoom-btn"
+                    dark x-small outlined
+                    @click="zoomChart('all')"
+            >
+                All
+            </v-btn>
+        </v-row>
         <div id="chart"></div>
     </div>
 </template>
@@ -30,11 +57,13 @@ export default {
     components: {},
 
     data: () => ({
+        zoom: "all",
+        slice: null,
+        chart: null,
     }),
 
     computed: {
-        ...mapGetters([
-        ]),
+        ...mapGetters([]),
     },
 
     mounted() {
@@ -45,13 +74,45 @@ export default {
     },
 
     methods: {
-        ...mapActions([
-        ]),
+        ...mapActions([]),
 
-        ...mapMutations([
-        ]),
+        ...mapMutations([]),
+
+        zoomChart(zoom) {
+            this.zoom = zoom;
+
+            switch (zoom) {
+                case "week":
+                    this.slice = -7;
+                    break;
+                case "month":
+                    this.slice = -30;
+                    break;
+                case "all":
+                    this.slice = null;
+                    break;
+                default:
+                    this.slice = null;
+            }
+
+            if (this.chart) {
+                this.chart.destroy();
+            }
+
+            this.redraw();
+        },
+
+        changeZoomBtnStyle() {
+            document.getElementById("week-zoom-btn").classList.remove("selected");
+            document.getElementById("month-zoom-btn").classList.remove("selected");
+            document.getElementById("all-zoom-btn").classList.remove("selected");
+
+            document.getElementById(this.zoom + "-zoom-btn").classList.add("selected");
+        },
 
         redraw() {
+
+            this.changeZoomBtnStyle();
 
             let values = [];
             this.data.datasets[0].data.forEach(v => values.push(v));
@@ -62,8 +123,10 @@ export default {
             let options = {
                 series: [{
                     name: "Rate",
-                    data: values
+                    data: this.slice ? values.slice(this.slice) : values
                 }],
+
+                labels: this.slice ? labels.slice(this.slice) : labels,
 
                 chart: {
                     type: 'area',
@@ -100,8 +163,6 @@ export default {
                     colors: ["#51FF00"],
                 },
 
-                labels: labels,
-
                 xaxis: {
                     type: 'category',
 
@@ -135,7 +196,9 @@ export default {
                         style: {
                             cssClass: 'yaxis-label',
                         },
-                        formatter: (value) => { return value + '%' },
+                        formatter: (value) => {
+                            return value + '%'
+                        },
                     },
                 },
 
@@ -163,8 +226,8 @@ export default {
 
             };
 
-            let chart = new ApexCharts(document.querySelector("#chart"), options);
-            chart.render();
+            this.chart = new ApexCharts(document.querySelector("#chart"), options);
+            this.chart.render();
         },
     }
 }
@@ -183,6 +246,15 @@ export default {
     font-weight: bold;
     font-size: 21px;
     fill: #B1B1B1 !important;
+}
+
+.zoom-btn {
+    margin-right: 5px;
+    border-color: rgba(0, 0, 0, 0) !important;
+}
+
+.selected {
+    border-color: white !important;
 }
 
 </style>
