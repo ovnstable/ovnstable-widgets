@@ -1,7 +1,7 @@
 <template>
     <div class="main">
         <div>
-            <img width="37px" alt="Ovn logo" src="../assets/ovn_logo.png">
+            <img width="37px" alt="Ovn logo" src="../assets/ovn.png">
             <label class="title" @click="clickLogo">
                 Overnight<sup>&reg;</sup>
                 <div class="rectangle"></div>
