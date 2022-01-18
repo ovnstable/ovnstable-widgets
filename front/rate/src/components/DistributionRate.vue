@@ -23,7 +23,7 @@
 </template>
 
 <script>
-import LineBarChart from "@/charts/apex/LineBarChart";
+import LineBarChart from "@/charts/LineBarChart";
 
 export default {
     name: 'InterestRate',
