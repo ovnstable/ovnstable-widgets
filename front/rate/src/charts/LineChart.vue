@@ -116,17 +116,22 @@ export default {
 
             let values = [];
             this.data.datasets[0].data.forEach(v => values.push(v));
+            values = this.slice ? values.slice(this.slice) : values;
 
             let labels = [];
             this.data.labels.forEach(v => labels.push(v));
+            labels = this.slice ? labels.slice(this.slice) : labels;
+
+            let averageValue = values.reduce((a, b) => (a + b)) / values.length;
+            averageValue = averageValue.toFixed(1);
 
             let options = {
                 series: [{
                     name: "Rate",
-                    data: this.slice ? values.slice(this.slice) : values
+                    data: values
                 }],
 
-                labels: this.slice ? labels.slice(this.slice) : labels,
+                labels: labels,
 
                 chart: {
                     type: 'area',
@@ -147,6 +152,29 @@ export default {
                     toolbar: {
                         show: false
                     }
+                },
+
+                annotations: {
+                    position: 'back',
+                    yaxis: [{
+                        y: averageValue,
+                        strokeDashArray: 6,
+                        borderColor: 'rgba(252, 202, 70)',
+                        fillColor: 'rgba(252, 202, 70)',
+                        label: {
+                            borderWidth: 0,
+                            borderRadius: 0,
+                            textAnchor: 'start',
+                            position: 'left',
+                            text: "AVG " + averageValue + "%",
+                            offsetX: 5,
+                            offsetY: -5,
+                            style: {
+                                background: 'rgba(252, 202, 70, 0.2)',
+                                cssClass: 'annotation-label',
+                            },
+                        },
+                    }]
                 },
 
                 grid: {
@@ -255,6 +283,18 @@ export default {
 
 .selected {
     border-color: white !important;
+}
+
+.apexcharts-yaxis-annotations > line {
+    border-width: 0px !important;
+    stroke-width: 2px !important;
+    stroke: rgba(252, 202, 70, 0.3) !important;
+    stroke-linecap: round !important;
+}
+
+.annotation-label {
+    fill: rgba(252, 202, 70, 1) !important;
+    font-size: 12px !important;
 }
 
 </style>
