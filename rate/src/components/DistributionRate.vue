@@ -1,7 +1,7 @@
 <template>
     <div class="main">
         <div>
-            <img width="37px" alt="Ovn logo" src="../assets/ovn.png">
+            <img width="37px" alt="Ovn logo" :src="image">
             <label class="title" @click="clickLogo">
                 Overnight<sup>&reg;</sup>
                 <div class="rectangle"></div>
@@ -24,6 +24,7 @@
 
 <script>
 import LineBarChart from "@/charts/LineBarChart";
+import UsdPlusImage from '../assets/usdPlus.json';
 
 export default {
     name: 'InterestRate',
@@ -36,6 +37,8 @@ export default {
 
 
     data: () => ({
+        image: UsdPlusImage.image,
+
         loading: true,
         chartdata: null,
     }),

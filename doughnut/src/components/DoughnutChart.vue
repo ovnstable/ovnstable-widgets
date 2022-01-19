@@ -1,7 +1,7 @@
 <template>
     <div class="main">
         <div>
-            <img width="37px" alt="Ovn logo" src="../assets/ovn.png">
+            <img width="37px" alt="Ovn logo" :src="image">
             <label class="title" @click="clickLogo">
                 Overnight<sup>&reg;</sup>
                 <div class="rectangle"></div>
@@ -54,6 +54,7 @@
 <script>
 
 import Doughnut from "../charts/Doughnut";
+import UsdPlusImage from '../assets/usdPlus.json';
 
 export default {
     name: 'DoughnutChart',
@@ -65,6 +66,8 @@ export default {
     props: {},
 
     data: () => ({
+        image: UsdPlusImage.image,
+
         loading: true,
 
         doughnutHeight: 400,
