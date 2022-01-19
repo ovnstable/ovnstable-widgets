@@ -15,4 +15,4 @@ Vue.customElement('ovn-widget-rate', App)
 new Vue({
     vuetify,
     render: h => h(App)
-}).$mount('#app');
+});
