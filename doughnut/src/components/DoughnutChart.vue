@@ -9,41 +9,43 @@
             </label>
         </div>
 
-        <template v-if="dataStrategies || dataAssets">
-            <v-row v-if="dataStrategies">
-                <Doughnut
-                        style="margin-left: -50px;"
-                        refer="doughnut_strategies"
-                        :data="dataStrategies"
-                        :height="doughnutHeight"
-                        :animated="animated"
-                        :percentsOnly="percentsOnly"
-                        :diffuse="diffuse"
-                        :dark="!theme"
-                        :legend="showLegend"
-                        :color="theme ? '#101A26' : 'white'"
-                        title="Strategies"
-                />
-            </v-row>
-            <v-row v-if="dataAssets" :style="{'margin-top': dataStrategies ? '-120px' : '0px'}">
-                <Doughnut
-                        style="margin-left: -50px;"
-                        refer="doughnut_assets"
-                        :data="dataAssets"
-                        :height="doughnutHeight"
-                        :animated="animated"
-                        :percentsOnly="percentsOnly"
-                        :diffuse="diffuse"
-                        :dark="!theme"
-                        :legend="showLegend"
-                        :color="theme ? '#101A26' : 'white'"
-                        title="Stablecoins"
-                />
-            </v-row>
-        </template>
-        <template v-else>
-            <div class="loader"></div>
-        </template>
+        <div class="doughnut">
+            <template v-if="dataStrategies || dataAssets">
+                <v-row v-if="dataStrategies">
+                    <Doughnut
+                            style="margin-left: -50px;"
+                            refer="doughnut_strategies"
+                            :data="dataStrategies"
+                            :height="doughnutHeight"
+                            :animated="animated"
+                            :percentsOnly="percentsOnly"
+                            :diffuse="diffuse"
+                            :dark="!theme"
+                            :legend="showLegend"
+                            :color="theme ? '#101A26' : 'white'"
+                            title="Strategies"
+                    />
+                </v-row>
+                <v-row v-if="dataAssets" :style="{'margin-top': dataStrategies ? '-120px' : '0px'}">
+                    <Doughnut
+                            style="margin-left: -50px;"
+                            refer="doughnut_assets"
+                            :data="dataAssets"
+                            :height="doughnutHeight"
+                            :animated="animated"
+                            :percentsOnly="percentsOnly"
+                            :diffuse="diffuse"
+                            :dark="!theme"
+                            :legend="showLegend"
+                            :color="theme ? '#101A26' : 'white'"
+                            title="Stablecoins"
+                    />
+                </v-row>
+            </template>
+            <template v-else>
+                <div class="loader"></div>
+            </template>
+        </div>
         <div class="signature" @click="clickLogo">
             <div class="powered-by">Powered by</div>
             <div class="powered">overnight.fi</div>

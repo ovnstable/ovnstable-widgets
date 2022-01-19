@@ -1,6 +1,6 @@
 <template>
     <div>
-        <v-row style="margin-bottom: 0">
+        <v-row style="margin-bottom: 0; margin-top: 5px;">
             <v-spacer></v-spacer>
             <v-btn
                     id="week-zoom-btn"
@@ -262,6 +262,11 @@ export default {
 </script>
 
 <style>
+
+#line-chart {
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+}
 
 .xaxis-label {
     font-weight: normal;
