@@ -31,7 +31,8 @@ jobs:
             ${{ runner.os }}-node-
 
       - name: Install and build
-        run: >
-          cd front
-          bash deploy.sh ${DOCKER_TOKEN}
+        run: |
+          cd front \
+          bash deploy.sh ${DOCKER_TOKEN} \
+          ...
 
