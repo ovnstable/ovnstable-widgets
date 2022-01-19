@@ -1,7 +1,7 @@
 <!--suppress CssUnresolvedCustomProperty -->
 <template>
     <div>
-        <v-row>
+        <v-row class="doughnut-row">
             <v-col>
                 <div :id="refer" :ref="refer" :style="'--background: ' + background"></div>
             </v-col>

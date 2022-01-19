@@ -187,6 +187,11 @@ export default {
 
 <style>
 
+#line-bar-chart {
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+}
+
 .xaxis-label {
     font-weight: normal;
     font-size: 14px;

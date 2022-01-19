@@ -48,7 +48,7 @@ export default {
 @media only screen and (max-width: 600px) {
 
     #app {
-        width: 300px;
+        width: 100%
     }
 }
 
