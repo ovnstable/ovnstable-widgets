@@ -7,6 +7,8 @@ tag=1
 
 echo $token
 
+cd front
+
 cd polybor || exit
 
 npm install
