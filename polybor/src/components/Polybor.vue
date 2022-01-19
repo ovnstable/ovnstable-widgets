@@ -4,7 +4,7 @@
             <img alt="Ovn logo" src="../assets/ovn.png">
         </div>
         <div class="title" @click="clickLogo">
-            <a class="link">Polybor Overnight</a>
+            <a class="link">Polybor Overnight TEST</a>
         </div>
 
         <template v-if="item">
