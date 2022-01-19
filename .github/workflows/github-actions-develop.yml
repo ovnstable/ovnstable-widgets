@@ -40,4 +40,4 @@ jobs:
           username: ${{ secrets.SERVER_USERNAME }}
           key: ${{ secrets.SERVER_KEY }}
           port: ${{ secrets.SERVER_PORT }}
-          script: whoami
+          script: bash front/update.sh ${DOCKER_TOKEN}
