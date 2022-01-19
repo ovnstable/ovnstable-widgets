@@ -31,5 +31,5 @@ jobs:
             ${{ runner.os }}-node-
 
       - name: Install and build
-        run: bash deploy.sh ${DOCKER_TOKEN}
+        run: bash front/deploy.sh ${DOCKER_TOKEN}
 
