@@ -28,7 +28,7 @@ jobs:
             ${{ runner.os }}-node-
 
       - name: Install and build
-        run: bash front/deploy.sh ${{ secrets.DOCKER_TOKEN }}
+        run: bash deploy.sh ${{ secrets.DOCKER_TOKEN }}
 
       - name: Update Widgets
         uses: appleboy/ssh-action@master

@@ -3,11 +3,8 @@
 
 token=$1
 url=$2
+deploySSH=$3
 tag=1
-
-echo $token
-
-cd front
 
 cd polybor || exit
 
@@ -55,15 +52,19 @@ docker login \
 
 docker push  cr.yandex/crpg11k469bhc8lch9gm/overnight/widget:$tag
 
-#ssh $url docker login \
-#         --username oauth \
-#         --password $token \
-#        cr.yandex
-#
-#ssh $url docker pull cr.yandex/crpg11k469bhc8lch9gm/overnight/widget:$tag
-#ssh $url docker-compose -f /root/ovn/docker-compose.yaml up -d --no-deps widget
-#
-#
-#ssh $url docker logs ovn-widget -f
+
+if [[ "$deploySSH" == "ssh" ]];  then
+
+  ssh $url docker login \
+           --username oauth \
+           --password $token \
+          cr.yandex
+
+  ssh $url docker pull cr.yandex/crpg11k469bhc8lch9gm/overnight/widget:$tag
+  ssh $url docker-compose -f /root/ovn/docker-compose.yaml up -d --no-deps widget
+  ssh $url docker logs ovn-widget -f
+fi
+
+
 
 
