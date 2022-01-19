@@ -27,8 +27,8 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-node-
 
-#      - name: Install and build
-#        run: bash front/deploy.sh ${{ secrets.DOCKER_TOKEN }}
+      - name: Install and build
+        run: bash front/deploy.sh ${{ secrets.DOCKER_TOKEN }}
 
       - name: Update Widgets
         uses: appleboy/ssh-action@master
