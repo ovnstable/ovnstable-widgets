@@ -27,7 +27,7 @@
                 All
             </v-btn>
         </v-row>
-        <div id="chart"></div>
+        <div id="line-chart"></div>
     </div>
 </template>
 
@@ -254,7 +254,7 @@ export default {
 
             };
 
-            this.chart = new ApexCharts(document.querySelector("#chart"), options);
+            this.chart = new ApexCharts(document.querySelector("#line-chart"), options);
             this.chart.render();
         },
     }
