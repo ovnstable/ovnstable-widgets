@@ -9,9 +9,6 @@ jobs:
 
     runs-on: ubuntu-latest
 
-    env: # Or as an environment variable
-      DOCKER_TOKEN: ${{ secrets.DOCKER_TOKEN }}
-
     strategy:
       matrix:
         node-version: [16.x]
@@ -31,7 +28,7 @@ jobs:
             ${{ runner.os }}-node-
 
 #      - name: Install and build
-#        run: bash front/deploy.sh ${DOCKER_TOKEN}
+#        run: bash front/deploy.sh ${{ secrets.DOCKER_TOKEN }}
 
       - name: Update Widgets
         uses: appleboy/ssh-action@master
@@ -40,4 +37,11 @@ jobs:
           username: ${{ secrets.SERVER_USERNAME }}
           key: ${{ secrets.SERVER_KEY }}
           port: ${{ secrets.SERVER_PORT }}
-          script: bash front/update.sh ${DOCKER_TOKEN}
+          script: |
+            docker login \
+                     --username oauth \
+                     --password ${{ secrets.DOCKER_TOKEN }} \
+                    cr.yandex
+            docker pull cr.yandex/crpg11k469bhc8lch9gm/overnight/widget:1
+            docker-compose -f /root/ovn/docker-compose.yaml up -d --no-deps widget
+
