@@ -1,5 +1,5 @@
 <template>
-    <div id="app">
+    <div id="app-doughnut">
         <template v-if="type==='doughnut'">
             <DoughnutChart/>
         </template>
@@ -33,7 +33,7 @@ export default {
 
 <style>
 
-#app {
+#app-doughnut {
     font-family: Avenir, Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -43,7 +43,7 @@ export default {
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 560px) {
 
-    #app {
+    #app-doughnut {
         width: 100%;
     }
 
@@ -60,7 +60,7 @@ export default {
 /* Small devices (portrait tablets and large phones, 600px and up) */
 @media only screen and (min-width: 560px) {
 
-    #app {
+    #app-doughnut {
         width: 560px;
     }
 }
