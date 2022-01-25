@@ -17,7 +17,7 @@
         </template>
         <div class="signature" @click="clickLogo">
             <div class="powered-by">Powered by</div>
-            <div class="powered">ovnstable.io</div>
+            <div class="powered">overnight.fi</div>
         </div>
     </div>
 </template>
