@@ -5,7 +5,7 @@
             <v-col>
                 <div :id="refer" :ref="refer" :style="'--background: ' + background"></div>
             </v-col>
-            <v-col v-if="legend" style="margin-left: -50px; width: 220px">
+            <v-col v-if="legend" style="margin-left: -50px; width: 260px">
                 <div style="margin-top: 68px;">
                     <table style="border-collapse:separate; border-spacing: 0 10px; width: 100%">
                         <tr v-for="item in data" :key="item.title">
