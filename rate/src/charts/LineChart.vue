@@ -71,6 +71,7 @@ export default {
     },
 
     created() {
+        this.zoomChart("month");
     },
 
     methods: {
@@ -208,7 +209,12 @@ export default {
                     },
 
                     axisBorder: {
-                        show: false,
+                        show: true,
+                        color: '#B1B1B1',
+                        height: 0.4,
+                        width: '100%',
+                        offsetX: 5,
+                        offsetY: -5,
                     },
 
                     axisTicks: {
@@ -251,7 +257,6 @@ export default {
                         colorStops: []
                     },
                 }
-
             };
 
             this.chart = new ApexCharts(document.querySelector("#line-chart"), options);
