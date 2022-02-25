@@ -126,6 +126,14 @@ export default {
             let averageValue = values.reduce((a, b) => (a + b)) / values.length;
             averageValue = averageValue.toFixed(1);
 
+            let maxValue;
+            try {
+                maxValue = Math.max.apply(Math, values);
+                maxValue = Math.round(maxValue / 10) * 10;
+            } catch (e) {
+                maxValue = 50;
+            }
+
             let options = {
                 series: [{
                     name: "Rate",
@@ -224,6 +232,10 @@ export default {
 
                 yaxis: {
                     opposite: false,
+
+                    tickAmount: 5,
+                    min: 0,
+                    max: maxValue,
 
                     labels: {
                         minWidth: 40,
