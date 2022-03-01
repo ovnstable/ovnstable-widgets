@@ -254,7 +254,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 
 stop:not(:last-child) {
     /*stop-color: var(--background) !important;*/

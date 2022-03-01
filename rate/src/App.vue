@@ -81,8 +81,4 @@ export default {
         width: 1200px;
     }
 }
-
-stop:not(:last-child) {
-    stop-color: none !important;
-}
 </style>
