@@ -129,7 +129,7 @@ export default {
             let maxValue;
             try {
                 maxValue = Math.max.apply(Math, values);
-                maxValue = Math.round(maxValue / 10) * 10;
+                maxValue = Math.round(Math.ceil(maxValue / 10)) * 10;
             } catch (e) {
                 maxValue = 50;
             }
@@ -259,6 +259,8 @@ export default {
                 },
 
                 fill: {
+                    type: ['gradient'],
+
                     gradient: {
                         shade: 'dark',
                         type: "vertical",
@@ -266,7 +268,6 @@ export default {
                         opacityFrom: 1,
                         opacityTo: 0,
                         stops: [0, 100],
-                        colorStops: []
                     },
                 }
             };
