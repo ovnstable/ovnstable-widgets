@@ -34,6 +34,7 @@
 </template>
 
 <script>
+
 /* eslint-disable no-unused-vars,no-undef */
 
 import {mapActions, mapGetters, mapMutations} from "vuex";
