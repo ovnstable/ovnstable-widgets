@@ -172,7 +172,6 @@ export default {
                         opacityFrom: 1,
                         opacityTo: 0,
                         stops: [0, 100],
-                        colorStops: []
                     },
                 }
 
@@ -206,7 +205,7 @@ export default {
 }
 
 .apexcharts-bar-area {
-    fill: #48e400;
+    fill: #48e400 !important;
 }
 
 </style>
