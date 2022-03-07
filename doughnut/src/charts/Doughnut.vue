@@ -255,9 +255,9 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
 
-stop:not(:last-child) {
+.doughnut-row stop:not(:last-child) {
     /*stop-color: var(--background) !important;*/
     stop-color: rgba(0, 0, 0, 0) !important;
 }
