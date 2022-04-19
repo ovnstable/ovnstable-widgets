@@ -2,7 +2,7 @@
     <v-container class="main">
         <v-row>
             <v-col cols="6">
-                <MainCard label="Total value locked" :value="tvl"/>
+                <MainCard label="Protocol Controlled Value" :value="tvl"/>
             </v-col>
 
             <v-col cols="6">
@@ -40,7 +40,7 @@ export default {
         fillData(value) {
 
             if (value.tvl) {
-                this.tvl = '$' + this.$utils.formatMoneyComma(value.tvl, 0);
+                this.tvl = '$' + this.$utils.formatMoneyComma(value.tvl, 2);
             } else {
                 this.tvl = '—';
             }
