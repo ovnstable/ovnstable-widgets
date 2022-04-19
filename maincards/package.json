@@ -1,5 +1,5 @@
 {
-  "name": "doughnut-chart",
+  "name": "maincards",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -9,7 +9,6 @@
   },
   "dependencies": {
     "accounting-js": "^1.1.1",
-    "amcharts3": "github:amcharts/amcharts3",
     "core-js": "^3.6.5",
     "document-register-element": "^1.14.10",
     "vue": "^2.5.22",

@@ -1573,6 +1573,14 @@
     "mime-types" "~2.1.24"
     "negotiator" "0.6.2"
 
+"accounting-js@^1.1.1":
+  "integrity" "sha1-f+Sz9wwB6+C4XALF8QfxOTuIDJ4="
+  "resolved" "https://registry.npmjs.org/accounting-js/-/accounting-js-1.1.1.tgz"
+  "version" "1.1.1"
+  dependencies:
+    "is-string" "^1.0.4"
+    "object-assign" "^4.0.1"
+
 "acorn-jsx@^5.2.0":
   "integrity" "sha512-rq9s+JNhf0IChjtDXxllJ7g41oZk5SlXtp0LHwyA5cejwn7vKmKp4pPri6YEePv2PU65sAsegbXtIinmDFDXgQ=="
   "resolved" "https://registry.npmjs.org/acorn-jsx/-/acorn-jsx-5.3.2.tgz"
@@ -4995,7 +5003,7 @@
   "resolved" "https://registry.npmjs.org/is-stream/-/is-stream-2.0.1.tgz"
   "version" "2.0.1"
 
-"is-string@^1.0.5", "is-string@^1.0.7":
+"is-string@^1.0.4", "is-string@^1.0.5", "is-string@^1.0.7":
   "integrity" "sha512-tE2UXzivje6ofPW7l23cjDOMa09gb7xlAqG6jG5ej6uPV32TlWP3NKPigtaGeHNu9fohccRYvIiZMfOOnOYUtg=="
   "resolved" "https://registry.npmjs.org/is-string/-/is-string-1.0.7.tgz"
   "version" "1.0.7"
