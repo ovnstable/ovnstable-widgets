@@ -42,6 +42,15 @@ cd ..
 find doughnut/dist/js/ -type f -name '*.js' -exec sh -c 'x="{}"; mv "$x" "doughnut/dist/js/doughnut.js"' \;
 
 
+cd maincards || exit
+
+npm install
+npm run build
+
+cd ..
+find maincards/dist/js/ -type f -name '*.js' -exec sh -c 'x="{}"; mv "$x" "maincards/dist/js/maincards.js"' \;
+
+
 docker build . -t cr.yandex/crpg11k469bhc8lch9gm/overnight/widget:$tag
 
 
