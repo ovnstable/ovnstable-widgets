@@ -1,5 +1,5 @@
 <template>
-    <div id="app-doughnut">
+    <div id="app-maincards">
         <MainCards/>
     </div>
 </template>
@@ -23,7 +23,7 @@ export default {
 
 <style>
 
-#app-doughnut {
+#app-maincards {
     font-family: Lato, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
