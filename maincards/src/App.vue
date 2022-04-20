@@ -28,30 +28,12 @@ export default {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     background-color: transparent;
+
+    width: 100%;
 }
 
-/* Extra small devices (phones, 600px and down) */
-@media only screen and (max-width: 580px) {
-
-    #app-doughnut {
-        width: 100%;
-    }
-
-    .main-card-container {
-        height: 186px !important;
-    }
-}
-
-/* Small devices (portrait tablets and large phones, 600px and up) */
-@media only screen and (min-width: 580px) {
-
-    #app-doughnut {
-        width: 100%;
-    }
-
-    .main-card-container {
-        height: 186px !important;
-    }
+.main-card-container {
+    height: 186px !important;
 }
 
 </style>
