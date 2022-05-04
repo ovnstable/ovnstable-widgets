@@ -40,7 +40,7 @@ export default {
         fillData(value) {
 
             if (value.tvl) {
-                this.tvl = '$' + this.$utils.formatMoneyComma(value.tvl, 2);
+                this.tvl = '$ ' + this.$utils.formatMoneyComma(value.tvl, 2);
             } else {
                 this.tvl = '—';
             }

@@ -1,6 +1,6 @@
 <template>
-    <div class="main-card-container">
-        <v-row>
+    <div fluid class="main-card-container">
+        <v-row class="value-row">
             <v-spacer></v-spacer>
             <label class="value-label">
                 {{ value }}
@@ -8,7 +8,7 @@
             <v-spacer></v-spacer>
         </v-row>
 
-        <v-row>
+        <v-row class="label-row">
             <v-spacer></v-spacer>
             <label class="text-label">
                 {{ label }}
@@ -56,33 +56,47 @@ export default {
 <style>
 
 .main-card-container {
-    border-radius: 20px !important;
-    background: #1D2029 !important;
+    border: 1px solid #4C586D !important;
+    background: #0A1632 !important;
 }
 
 .value-label {
+    font-family: 'Roboto', sans-serif;
     font-style: normal;
-    font-weight: 700;
-    font-size: 48px;
-    line-height: 56px;
+    font-weight: 400;
+    font-size: 54px;
+    line-height: 60px;
 
-    background: linear-gradient(91.26deg, #FE7F2D 0%, #FCCA46 100%);
+    font-feature-settings: 'pnum' on, 'lnum' on;
+}
+
+.text-label {
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 28px;
+
+    letter-spacing: 0.1em !important;
+
+    text-transform: uppercase;
+    font-feature-settings: 'pnum' on, 'lnum' on;
+}
+
+.value-label, .text-label {
+    background: linear-gradient(91.26deg, #28A0F0 0%, rgba(6, 120, 196, 0.9917) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
     text-fill-color: transparent;
-
-    margin-top: 40px !important;
 }
 
-.text-label {
-    font-style: normal;
-    font-weight: 600;
-    font-size: 24px;
-    line-height: 36px;
+.value-row {
+    margin-top: 63px !important;
+    margin-bottom: 13px !important;
+}
 
-    color: #F3F3F3;
-
-    margin-top: 14px !important;
+.label-row {
+    /*margin-top: 13px !important;*/
 }
 </style>

@@ -33,7 +33,7 @@ export default {
 }
 
 .main-card-container {
-    height: 186px !important;
+    height: 226px !important;
 }
 
 </style>
