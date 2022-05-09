@@ -168,7 +168,8 @@ export default {
 
                 chart: {
                     type: 'area',
-                    height: 232,
+                    height: 250,
+                    width: 760,
 
                     sparkline: {
                         enabled: false,
@@ -196,7 +197,7 @@ export default {
                 stroke: {
                     curve: 'straight',
                     width: 2,
-                    colors: ["#28A0F0"],
+                    colors: ["#3D8DFF"],
                 },
 
                 xaxis: {
@@ -234,22 +235,23 @@ export default {
                     horizontalAlign: 'left'
                 },
 
-                colors: ['#1C1F27'],
-
                 theme: {
                     mode: 'dark',
                 },
 
                 fill: {
-                    type: ['gradient'],
-
+                    colors: ['rgba(61, 141, 255, 0.4)'],
+                    opacity: 1,
+                    type: 'gradient',
                     gradient: {
-                        shade: 'light',
+                        shade: 'dark',
                         type: "vertical",
-                        shadeIntensity: 0.2,
+                        shadeIntensity: 1,
+                        gradientToColors: ['rgba(17, 30, 55, 0.6)'],
                         opacityFrom: 1,
-                        opacityTo: 0,
-                        stops: [100, 0],
+                        opacityTo: 1,
+                        stops: [0, 100],
+                        colorStops: []
                     },
                 }
             };
@@ -269,6 +271,7 @@ export default {
     font-weight: 300 !important;
     font-size: 24px !important;
     line-height: 36px !important;
+    letter-spacing: 0.04em !important;
     color: #FFFFFF !important;
 }
 
@@ -301,11 +304,11 @@ export default {
 }
 
 .chart-row {
-    height: 250px !important;
+    height: 275px !important;
 }
 
 .tvl-chart-container {
-    height: 433px !important;
+    height: 428px !important;
 }
 
 .yaxis-label {
@@ -327,12 +330,13 @@ export default {
 .zoom-btn {
     height: 32px !important;
     border: none !important;
-    font-family: 'Lato', sans-serif !important;
+    font-family: 'Roboto', sans-serif !important;
     font-style: normal !important;
-    font-weight: 400 !important;
+    font-weight: 300 !important;
     font-size: 16px !important;
     line-height: 24px !important;
     color: #707A8B !important;
+    letter-spacing: 0 !important;
 }
 
 .selected {
@@ -346,12 +350,12 @@ export default {
 }
 
 .chart-header-row, .chart-row, .zoom-row {
-    margin-left: 20px;
-    margin-right: 20px;
+    margin-left: 28px;
+    margin-right: 28px;
 }
 
 #all-zoom-btn-tvl {
-    margin-right: 47px !important;
+    margin-right: 40px !important;
 }
 
 .zoom-row {
@@ -359,12 +363,16 @@ export default {
 }
 
 .header-text-row, .header-text-sub-row {
-    margin-left: 35px !important;
-    margin-right: 35px !important;
+    margin-left: 28px !important;
+    margin-right: 28px !important;
+}
+
+.header-text-sub-row {
+    padding-top: 8px !important;
 }
 
 .header-text-row {
-    margin-top: 40px !important;
+    margin-top: 28px !important;
 }
 
 </style>
