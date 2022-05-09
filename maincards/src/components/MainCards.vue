@@ -1,12 +1,13 @@
 <template>
     <v-container class="main">
         <v-row>
-            <v-col cols="6">
-                <MainCard label="Protocol Controlled Value" :value="tvl"/>
+            <v-col>
+                <MainCardPcv label="Protocol Controlled Value" :value="tvl"/>
             </v-col>
-
-            <v-col cols="6">
-                <MainCard label="Average USD+ APY" :value="apyWeek"/>
+        </v-row>
+        <v-row>
+            <v-col>
+                <MainCardApy label="Average USD+ APY" :value="apyWeek"/>
             </v-col>
         </v-row>
     </v-container>
@@ -14,12 +15,14 @@
 
 <script>
 
-import MainCard from "./card/MainCard";
+import MainCardPcv from "./card/MainCardPcv";
+import MainCardApy from "./card/MainCardApy";
 export default {
     name: 'MainCards',
 
     components: {
-        MainCard
+        MainCardPcv,
+        MainCardApy,
     },
 
     props: {},
@@ -46,7 +49,7 @@ export default {
             }
 
             if (value.apyWeek) {
-                this.apyWeek = this.$utils.formatMoney(value.apyWeek, 1) + '%';
+                this.apyWeek = this.$utils.formatMoney(value.apyWeek, 0) + '%';
             } else {
                 this.apyWeek = '—';
             }
