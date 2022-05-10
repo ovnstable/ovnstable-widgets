@@ -2,7 +2,7 @@
     <v-container class="main">
         <v-row>
             <v-col>
-<!--                <StrategiesCard title="strategies in portfolio" :data="strategiesData" :totalUsdPlusValue="totalUsdPlusValue"/>-->
+                <StrategiesCard title="strategies in portfolio" :data="strategiesData" :totalUsdPlusValue="totalUsdPlusValue"/>
             </v-col>
         </v-row>
         <v-row>
@@ -15,14 +15,14 @@
 
 <script>
 
-// import StrategiesCard from "./card/StrategiesCard";
+import StrategiesCard from "./card/StrategiesCard";
 import StablecoinsCard from "./card/StablecoinsCard";
 export default {
     name: 'PortfolioCards',
 
     components: {
         StablecoinsCard,
-        // StrategiesCard,
+        StrategiesCard,
     },
 
     props: {},
@@ -32,6 +32,17 @@ export default {
         totalUsdPlusValue: null,
 
         stablecoinsData: [],
+
+        colors: [
+            "#FCCA46",
+            "#FE7F2D",
+            "#3D8DFF",
+            "#22ABAC",
+            "#B22174",
+            "#2775CA",
+            "#26A17B",
+            "#23DD00",
+        ],
     }),
 
     computed: {},
@@ -42,9 +53,55 @@ export default {
             {"label": "USDT", "value": 176885.48, "link": "0xc2132d05d31c914a87c6611c10748aeb04b58e8f", "color": "#22ABAC", "logo": require('../assets/currencies/usdt.svg')},
             {"label": "DAI", "value": 62218.44, "link": "0x8f3Cf7ad23Cd3CaDbD9735AFf958023239c6A063", "color": "#FCCA46", "logo": require('../assets/currencies/dai.svg')},
         ];
+
+        this.getStrategiesData();
     },
 
     methods: {
+        fillStrategiesData(value) {
+            let result = [];
+
+            for (let i = 0; i < value.length; i++) {
+                let element = value[i];
+
+                result.push(
+                    {
+                        label: element.title,
+                        value: element.value,
+                        color: this.colors[i],
+                        link: element.link ? 'https://polygonscan.com/address/' + element.link : ''
+                    }
+                );
+            }
+
+            this.strategiesData = result;
+        },
+
+        getStrategiesData() {
+            let fetchOptions = {
+                headers: {
+                    "Access-Control-Allow-Origin": process.env.VUE_APP_WIDGET_API_URL
+                }
+            };
+
+            fetch(process.env.VUE_APP_WIDGET_API_URL + '/dapp/getTotalUsdPlusValue', fetchOptions)
+                .then(value => value.json())
+                .then(value => {
+                    this.totalUsdPlusValue = value;
+                }).catch(reason => {
+                console.log('Error get data: ' + reason)
+            })
+
+            fetch(process.env.VUE_APP_WIDGET_API_URL + '/widget/doughnut-strategies', fetchOptions)
+                .then(value => value.json())
+                .then(value => {
+                    this.fillStrategiesData(value)
+                    this.loading = false;
+                }).catch(reason => {
+                console.log('Error get data: ' + reason)
+                this.loading = false;
+            })
+        },
     }
 }
 </script>

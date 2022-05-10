@@ -15,9 +15,9 @@
             </vc-donut>
             <v-spacer></v-spacer>
         </v-row>
-        <v-container class="strategy-row-list">
-            <v-row class="strategy-row" justify="center">
-                <v-col v-for="item in data" v-bind:key="item.label"  class="img-label-col">
+        <v-container class="stablecoin-row-list">
+            <v-row class="stablecoin-row" justify="center">
+                <v-col v-for="item in data" v-bind:key="item.label" class="img-label-col" @click="openTokenOnScan(item.link)">
                     <v-img class="currency-icon" :src="item.logo"/>
                     <label class="stablecoin-label">{{ item.label }}</label>
                     <label class="stablecoin-label-percent">{{ $utils.formatMoneyComma(getPercent(item, data), 0) }}%</label>
@@ -80,6 +80,12 @@ export default {
                 )
             });
         },
+
+        openTokenOnScan(hash) {
+            if (hash && hash !== '') {
+                window.open("https://polygonscan.com/token/" + hash, '_blank').focus();
+            }
+        }
     }
 }
 </script>
@@ -116,6 +122,10 @@ export default {
     margin-left: 8px !important;
 }
 
+.stablecoin-label {
+    cursor: pointer !important;
+}
+
 .title-row {
     margin-top: 60px !important;
 }
@@ -124,13 +134,13 @@ export default {
     padding-top: 32px !important;
 }
 
-.strategy-row-list {
+.stablecoin-row-list {
     margin-top: 44px !important;
 }
 
-.strategy-row {
-    margin-left: 77px !important;
-    margin-right: 77px !important;
+.stablecoin-row {
+    margin-left: 65px !important;
+    margin-right: 65px !important;
 }
 
 .currency-icon {

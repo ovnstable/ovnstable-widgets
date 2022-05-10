@@ -7,21 +7,37 @@
         </v-row>
         <v-row class="doughnut-row">
             <v-spacer></v-spacer>
-            <!-- TODO: add strategies doughnut -->
-            LALALA
+            <vc-donut
+                    :background="'#FFFFFF'"
+                    :size="320" unit="px" :thickness="16"
+                    :sections="sections"
+                    :start-angle="0" :auto-adjust-text-size="false">
+                <p class="total-label">Total USD+</p>
+                <p class="total-sum-label">{{ $utils.formatMoneyComma(totalUsdPlusValue, 2)}}</p>
+            </vc-donut>
             <v-spacer></v-spacer>
         </v-row>
         <v-container class="strategy-row-list">
-            <v-row class="strategy-row">
-                LALALA
+            <v-row class="strategy-row" v-for="item in data" v-bind:key="item.label">
+                <label class="strategy-title-label" @click="openInNewTab(item.link)">{{ item.label }}</label>
+
                 <v-spacer></v-spacer>
-                LALALA
+
+                <v-progress-linear :value="getPercent(item, data)"
+                                   :color="item.color"
+                                   rounded
+                                   class="strategy-progress"
+                                   height="6">
+                </v-progress-linear>
+                <label class="strategy-label">{{ $utils.formatMoneyComma(getPercent(item, data), 0) }}%</label>
             </v-row>
         </v-container>
     </div>
 </template>
 
 <script>
+
+/* eslint-disable no-unused-vars,no-undef */
 
 export default {
     name: "StrategiesCard",
@@ -45,21 +61,57 @@ export default {
 
     components: {},
 
-    data: () => ({}),
+    data: () => ({
+        sections: [],
+    }),
+
+    watch: {
+        data: function (newVal, oldVal) {
+            this.updateSectionsData();
+        },
+    },
 
     computed: {},
 
     mounted() {
+        this.updateSectionsData();
     },
 
     created() {
+        this.updateSectionsData();
     },
 
-    methods: {}
+    methods: {
+        getPercent(item, data) {
+            let sum = data.map(dataItem => dataItem.value).reduce((prev, next) => prev + next);
+
+            return (item.value * 100 / sum) - 0;
+        },
+
+        updateSectionsData() {
+            this.sections = [];
+
+            this.data.forEach(item => {
+                this.sections.push(
+                    {
+                        color: item.color,
+                        label: item.label,
+                        value: parseFloat(this.getPercent(item, this.data).toFixed(2)) - 0,
+                    }
+                )
+            });
+        },
+
+        openInNewTab(url) {
+            if (url && url !== '') {
+                window.open(url, '_blank').focus();
+            }
+        }
+    }
 }
 </script>
 
-<style scoped>
+<style>
 
 .main-card-container {
     border: 1px solid #DEE1E5 !important;
@@ -80,6 +132,42 @@ export default {
     color: #333333;
 }
 
+.strategy-label, .strategy-title-label {
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 20px;
+    line-height: 32px;
+    color: #333333;
+}
+
+.strategy-title-label {
+    cursor: pointer !important;
+}
+
+.total-label {
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 20px;
+    line-height: 32px;
+    text-align: center;
+    color: #333333;
+}
+
+.total-sum-label {
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 40px;
+    line-height: 42px;
+    text-align: center;
+    font-feature-settings: 'pnum' on, 'lnum' on;
+    color: #333333;
+
+    margin-top: 6px !important;
+}
+
 .title-row {
     margin-top: 60px !important;
 }
@@ -93,8 +181,24 @@ export default {
 }
 
 .strategy-row {
-    margin-left: 88px !important;
-    margin-right: 88px !important;
+    margin-left: 76px !important;
+    margin-right: 76px !important;
+    margin-bottom: 20px !important;
+}
+
+.strategy-progress > .v-progress-linear__buffer {
+    background-color: #E5E7EA !important;
+}
+
+.strategy-progress > .v-progress-linear__determinate{
+    left: 0 !important;
+    right: auto !important;
+}
+
+.strategy-progress {
+    width: 155px !important;
+    margin-right: 12px !important;
+    margin-top: 12px !important;
 }
 
 </style>
