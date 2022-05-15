@@ -18,18 +18,20 @@
             <v-spacer></v-spacer>
         </v-row>
         <v-container class="strategy-row-list">
-            <v-row class="strategy-row" v-for="item in data" v-bind:key="item.label">
-                <label class="strategy-title-label" @click="openInNewTab(item.link)">{{ item.label }}</label>
+            <v-row class="strategy-row" v-for="item in data" v-bind:key="item.label" dense>
+                <v-col cols="6">
+                    <label class="strategy-title-label" @click="openInNewTab(item.link)">{{ item.label }}</label>
+                </v-col>
 
-                <v-spacer></v-spacer>
-
-                <v-progress-linear :value="getPercent(item, data)"
-                                   :color="item.color"
-                                   rounded
-                                   class="strategy-progress"
-                                   height="6">
-                </v-progress-linear>
-                <label class="strategy-label">{{ $utils.formatMoneyComma(getPercent(item, data), 0) }}%</label>
+                <v-col style="display: inline-flex" cols="6">
+                    <v-progress-linear :value="getPercent(item, data)"
+                                       :color="item.color"
+                                       rounded
+                                       class="strategy-progress"
+                                       height="6">
+                    </v-progress-linear>
+                    <label class="strategy-label">{{ $utils.formatMoneyComma(getPercent(item, data), 0) }}%</label>
+                </v-col>
             </v-row>
         </v-container>
     </div>
@@ -183,7 +185,7 @@ export default {
 .strategy-row {
     margin-left: 76px !important;
     margin-right: 76px !important;
-    margin-bottom: 20px !important;
+    margin-bottom: 8px !important;
 }
 
 .strategy-progress > .v-progress-linear__buffer {

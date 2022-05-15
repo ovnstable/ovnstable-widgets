@@ -23,8 +23,6 @@
             <div class="network-img-container">
                 <img class="network-img-polygon" width="40px" alt="Polygon logo"
                      :src="require('../../assets/networks/polygon.svg')">
-                <img class="network-img-fantom" width="40px" alt="Fantom logo"
-                     :src="require('../../assets/networks/ftm.png')" title="Fantom network data coming soon">
             </div>
         </v-row>
 
@@ -91,7 +89,7 @@ export default {
 
 .network-img-container {
     height: 40px !important;
-    margin-left: 42px !important;
+    margin-left: 22px !important;
     margin-top: 10px !important;
 }
 
