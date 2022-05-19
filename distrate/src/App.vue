@@ -32,8 +32,4 @@ export default {
     width: 100%;
 }
 
-.main-card-container {
-    height: 226px !important;
-}
-
 </style>

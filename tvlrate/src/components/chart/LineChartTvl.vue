@@ -215,7 +215,7 @@ export default {
                     },
 
                     axisTicks: {
-                        show: true,
+                        show: false,
                     },
                 },
 
