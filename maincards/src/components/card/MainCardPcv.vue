@@ -22,7 +22,7 @@
             </label>
             <div class="network-img-container">
                 <img class="network-img-polygon" width="40px" alt="Polygon logo"
-                     :src="require('../../assets/networks/polygon.svg')">
+                     :src="require('../../assets/networks/polygon.png')">
             </div>
         </v-row>
 
@@ -90,7 +90,6 @@ export default {
 .network-img-container {
     height: 40px !important;
     margin-left: 22px !important;
-    margin-top: 5px !important;
 }
 
 .network-img-polygon {
