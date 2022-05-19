@@ -4,13 +4,16 @@
             <v-col cols="12">
                 <v-row class="header-text-row">
                     <label class="chart-title">{{ avgApy ? 'Average USD+ APY' : '' }}</label>
+
                     <v-spacer></v-spacer>
+
                     <label class="chart-title-apy">
                         {{ (avgApy && avgApy.value) ? ($utils.formatMoneyComma(avgApy.value, 1)) + '%' : '' }}
                     </label>
                 </v-row>
                 <v-row class="header-text-sub-row">
                     <v-spacer></v-spacer>
+
                     <label class="chart-sub-title-apy">
                         {{ (avgApy && avgApy.date) ? 'from ' + avgApy.date : '' }}
                     </label>
@@ -331,10 +334,12 @@ export default {
 
 .chart-header-row {
     height: 150px !important;
+    z-index: 100 !important;
 }
 
 .chart-row {
     height: 275px !important;
+    z-index: 10 !important;
 }
 
 .apy-chart-container {
@@ -389,7 +394,7 @@ export default {
 }
 
 .zoom-row {
-    margin-top: -50px !important;
+    margin-top: -42px !important;
 }
 
 .header-text-row, .header-text-sub-row {
