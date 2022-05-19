@@ -1,5 +1,5 @@
 <template>
-    <div id="app-protfoliocards">
+    <div id="app-portfoliocards">
         <PortfolioCards/>
     </div>
 </template>
