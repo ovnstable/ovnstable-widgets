@@ -391,7 +391,7 @@ export default {
 }
 
 .zoom-row {
-    margin-top: -50px !important;
+    margin-top: -42px !important;
 }
 
 .header-text-row, .header-text-sub-row {
