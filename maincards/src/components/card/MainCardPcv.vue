@@ -90,7 +90,7 @@ export default {
 .network-img-container {
     height: 40px !important;
     margin-left: 22px !important;
-    margin-top: 10px !important;
+    margin-top: 5px !important;
 }
 
 .network-img-polygon {
