@@ -101,7 +101,7 @@ export default {
     methods: {
         ...mapMutations([]),
 
-        zoomChart(zoom) {
+        async zoomChart(zoom) {
 
             let fetchOptions = {
                 headers: {
@@ -109,14 +109,14 @@ export default {
                 }
             };
 
-            fetch(process.env.VUE_APP_WIDGET_API_URL + '/widget/avg-apy-info/' + zoom, fetchOptions)
+            await fetch(process.env.VUE_APP_WIDGET_API_URL + '/widget/avg-apy-info/' + zoom, fetchOptions)
                 .then(value => value.json())
                 .then(value => {
                     this.avgApy = value;
                     this.avgApy.date = moment(this.avgApy.date).format("DD MMM. ‘YY");
                 }).catch(reason => {
-                console.log('Error get data: ' + reason);
-            })
+                    console.log('Error get data: ' + reason);
+                })
 
             this.zoom = zoom;
 
