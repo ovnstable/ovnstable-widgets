@@ -43,7 +43,7 @@ export default {
         fillApyData(value) {
 
             if (value.value) {
-                this.apyWeek = this.$utils.formatMoney(value.value, 0) + '%';
+                this.apyWeek = this.$utils.formatMoney(value.value, 1) + '%';
             } else {
                 this.apyWeek = '—';
             }
