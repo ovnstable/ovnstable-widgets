@@ -4,13 +4,16 @@
             <v-col cols="12">
                 <v-row class="header-text-row">
                     <label class="chart-title">{{ avgApy ? 'Average USD+ APY' : '' }}</label>
+
                     <v-spacer></v-spacer>
+
                     <label class="chart-title-apy">
                         {{ (avgApy && avgApy.value) ? ($utils.formatMoneyComma(avgApy.value, 1)) + '%' : '' }}
                     </label>
                 </v-row>
                 <v-row class="header-text-sub-row">
                     <v-spacer></v-spacer>
+
                     <label class="chart-sub-title-apy">
                         {{ (avgApy && avgApy.date) ? 'from ' + avgApy.date : '' }}
                     </label>
