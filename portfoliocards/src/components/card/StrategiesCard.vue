@@ -102,7 +102,7 @@ export default {
                     {
                         color: item.color,
                         label: item.label,
-                        value: parseFloat(this.getPercent(item, this.data).toFixed(1)) - 0,
+                        value: this.getPercent(item, this.data),
                     }
                 )
             });

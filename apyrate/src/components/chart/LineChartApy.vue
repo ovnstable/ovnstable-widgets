@@ -331,10 +331,12 @@ export default {
 
 .chart-header-row {
     height: 150px !important;
+    z-index: 100 !important;
 }
 
 .chart-row {
     height: 275px !important;
+    z-index: 10 !important;
 }
 
 .apy-chart-container {
