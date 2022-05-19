@@ -2,12 +2,12 @@
     <v-container class="main">
         <v-row>
             <v-col>
-                <MainCardPcv label="Protocol Controlled Value" :value="tvl"/>
+                <MainCardPcv label="Protocol Controlled Value" :value="pcv"/>
             </v-col>
         </v-row>
         <v-row>
             <v-col>
-                <MainCardApy label="Average USD+ APY" :value="apyWeek"/>
+                <MainCardApy label="7-day average usd+ apy" :value="apyWeek"/>
             </v-col>
         </v-row>
     </v-container>
@@ -28,7 +28,7 @@ export default {
     props: {},
 
     data: () => ({
-        tvl: null,
+        pcv: null,
         apyWeek: null,
     }),
 
@@ -40,18 +40,27 @@ export default {
 
     methods: {
 
-        fillData(value) {
+        fillApyData(value) {
 
-            if (value.tvl) {
-                this.tvl = '$ ' + this.$utils.formatMoneyComma(value.tvl, 2);
-            } else {
-                this.tvl = '—';
-            }
-
-            if (value.apyWeek) {
-                this.apyWeek = this.$utils.formatMoney(value.apyWeek, 0) + '%';
+            if (value.value) {
+                this.apyWeek = this.$utils.formatMoney(value.value, 0) + '%';
             } else {
                 this.apyWeek = '—';
+            }
+        },
+
+        fillPcvData(value) {
+
+            if (value) {
+                let sum = 0.0;
+
+                for (let i = 0; i < value.length; i++) {
+                    sum += value[i][4];
+                }
+
+                this.pcv = '$ ' + this.$utils.formatMoneyComma(sum, 2);
+            } else {
+                this.pcv = '—';
             }
         },
 
@@ -62,13 +71,21 @@ export default {
                 }
             };
 
-            fetch(process.env.VUE_APP_WIDGET_API_URL + '/widget/maincards-info', fetchOptions)
+            fetch(process.env.VUE_APP_WIDGET_API_URL + '/widget/avg-apy-info/week', fetchOptions)
                 .then(value => value.json())
                 .then(value => {
-                    this.fillData(value);
+                    this.fillApyData(value);
                 }).catch(reason => {
                 console.log('Error get data: ' + reason);
-            })
+            });
+
+            fetch(process.env.VUE_APP_WIDGET_API_URL + '/dapp/strategies', fetchOptions)
+                .then(value => value.json())
+                .then(value => {
+                    this.fillPcvData(value);
+                }).catch(reason => {
+                console.log('Error get data: ' + reason);
+            });
         },
     }
 }

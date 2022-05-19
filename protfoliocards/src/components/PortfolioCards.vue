@@ -2,12 +2,12 @@
     <v-container class="main">
         <v-row>
             <v-col>
-                <StrategiesCard title="strategies in portfolio" :data="strategiesData" :totalUsdPlusValue="totalUsdPlusValue"/>
+                <StablecoinsCard title="stablecoins in portfolio" :data="stablecoinsData"/>
             </v-col>
         </v-row>
         <v-row>
             <v-col>
-                <StablecoinsCard title="stablecoins in portfolio" :data="stablecoinsData"/>
+                <StrategiesCard title="strategies in portfolio" :data="strategiesData" :totalUsdPlusValue="totalUsdPlusValue"/>
             </v-col>
         </v-row>
     </v-container>
@@ -61,15 +61,18 @@ export default {
         fillStrategiesData(value) {
             let result = [];
 
+            value.sort((a,b) => b[4] - a[4]);
+
             for (let i = 0; i < value.length; i++) {
                 let element = value[i];
 
                 result.push(
                     {
-                        label: element.title,
-                        value: element.value,
+                        label: element[0],
+                        fullName: element[1],
+                        value: element[4],
                         color: this.colors[i],
-                        link: element.link ? 'https://polygonscan.com/address/' + element.link : ''
+                        link: element[3] ? 'https://polygonscan.com/address/' + element[3] : ''
                     }
                 );
             }
@@ -92,7 +95,7 @@ export default {
                 console.log('Error get data: ' + reason)
             })
 
-            fetch(process.env.VUE_APP_WIDGET_API_URL + '/widget/doughnut-strategies', fetchOptions)
+            fetch(process.env.VUE_APP_WIDGET_API_URL + '/dapp/strategies', fetchOptions)
                 .then(value => value.json())
                 .then(value => {
                     this.fillStrategiesData(value)

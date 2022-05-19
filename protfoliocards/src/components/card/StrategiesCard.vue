@@ -5,6 +5,7 @@
             <label class="card-title-label">{{ title }}</label>
             <v-spacer></v-spacer>
         </v-row>
+
         <v-row class="doughnut-row">
             <v-spacer></v-spacer>
             <vc-donut
@@ -17,23 +18,26 @@
             </vc-donut>
             <v-spacer></v-spacer>
         </v-row>
-        <v-container class="strategy-row-list">
-            <v-row class="strategy-row" v-for="item in data" v-bind:key="item.label" dense>
-                <v-col cols="6">
-                    <label class="strategy-title-label" @click="openInNewTab(item.link)">{{ item.label }}</label>
-                </v-col>
 
-                <v-col style="display: inline-flex" cols="6">
-                    <v-progress-linear :value="getPercent(item, data)"
-                                       :color="item.color"
-                                       rounded
-                                       class="strategy-progress"
-                                       height="6">
-                    </v-progress-linear>
-                    <label class="strategy-label">{{ $utils.formatMoneyComma(getPercent(item, data), 0) }}%</label>
-                </v-col>
-            </v-row>
-        </v-container>
+        <v-row>
+            <v-container class="strategy-row-list">
+                <v-row class="strategy-row" v-for="item in data" v-bind:key="item.label" dense>
+                    <v-col cols="6">
+                        <label class="strategy-title-label" @click="openInNewTab(item.link)">{{ item.label }}</label>
+                    </v-col>
+
+                    <v-col style="display: inline-flex" cols="6">
+                        <v-progress-linear :value="getPercent(item, data)"
+                                           :color="item.color"
+                                           rounded
+                                           class="strategy-progress"
+                                           height="6">
+                        </v-progress-linear>
+                        <label class="strategy-label">{{ $utils.formatMoneyComma(getPercent(item, data), 0) }}%</label>
+                    </v-col>
+                </v-row>
+            </v-container>
+        </v-row>
     </div>
 </template>
 
@@ -98,7 +102,7 @@ export default {
                     {
                         color: item.color,
                         label: item.label,
-                        value: parseFloat(this.getPercent(item, this.data).toFixed(2)) - 0,
+                        value: parseFloat(this.getPercent(item, this.data).toFixed(1)) - 0,
                     }
                 )
             });
@@ -118,7 +122,7 @@ export default {
 .main-card-container {
     border: 1px solid #DEE1E5 !important;
     background: #FFFFFF !important;
-    min-height: 768px !important;
+    /*min-height: 768px !important;*/
     width: 663px !important;
 }
 
@@ -179,7 +183,8 @@ export default {
 }
 
 .strategy-row-list {
-    margin-top: 44px !important;
+    margin-top: 32px !important;
+    margin-bottom: 16px !important;
 }
 
 .strategy-row {
