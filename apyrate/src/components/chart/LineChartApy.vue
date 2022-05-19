@@ -1,6 +1,6 @@
 <template>
     <v-container class="apy-chart-container">
-        <v-row class="chart-header-row">
+        <v-row class="chart-header-row mb-0">
             <v-col cols="12">
                 <v-row class="header-text-row">
                     <label class="chart-title">{{ avgApy ? 'Average USD+ APY' : '' }}</label>
@@ -334,12 +334,10 @@ export default {
 
 .chart-header-row {
     height: 150px !important;
-    z-index: 100 !important;
 }
 
 .chart-row {
     height: 275px !important;
-    z-index: 10 !important;
 }
 
 .apy-chart-container {
@@ -394,7 +392,7 @@ export default {
 }
 
 .zoom-row {
-    margin-top: -42px !important;
+    margin-top: -50px !important;
 }
 
 .header-text-row, .header-text-sub-row {
