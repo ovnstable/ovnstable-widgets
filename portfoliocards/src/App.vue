@@ -1,13 +1,13 @@
 <template>
-    <div id="app-maincards">
-        <MainCards/>
+    <div id="app-portfoliocards">
+        <PortfolioCards/>
     </div>
 </template>
 
 <script>
 
 
-import MainCards from "./components/MainCards";
+import PortfolioCards from "./components/PortfolioCards";
 export default {
     name: 'App',
     props: {
@@ -16,24 +16,20 @@ export default {
         }
     },
     components: {
-        MainCards,
+        PortfolioCards,
     }
 }
 </script>
 
 <style>
 
-#app-maincards {
+#app-portfoliocards {
     font-family: Lato, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     background-color: transparent;
 
     width: 100%;
-}
-
-.main-card-container {
-    height: 226px !important;
 }
 
 </style>

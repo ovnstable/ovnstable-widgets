@@ -1,13 +1,13 @@
 <template>
-    <div id="app-maincards">
-        <MainCards/>
+    <div id="app-tvlrate">
+        <TvlRate/>
     </div>
 </template>
 
 <script>
 
 
-import MainCards from "./components/MainCards";
+import TvlRate from "./components/TvlRate";
 export default {
     name: 'App',
     props: {
@@ -16,14 +16,14 @@ export default {
         }
     },
     components: {
-        MainCards,
+        TvlRate,
     }
 }
 </script>
 
 <style>
 
-#app-maincards {
+#app-tvlrate {
     font-family: Lato, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;

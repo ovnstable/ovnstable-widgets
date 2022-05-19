@@ -1,13 +1,13 @@
 <template>
-    <div id="app-maincards">
-        <MainCards/>
+    <div id="app-apyrate">
+        <ApyRate/>
     </div>
 </template>
 
 <script>
 
 
-import MainCards from "./components/MainCards";
+import ApyRate from "./components/ApyRate";
 export default {
     name: 'App',
     props: {
@@ -16,14 +16,14 @@ export default {
         }
     },
     components: {
-        MainCards,
+        ApyRate,
     }
 }
 </script>
 
 <style>
 
-#app-maincards {
+#app-apyrate {
     font-family: Lato, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;

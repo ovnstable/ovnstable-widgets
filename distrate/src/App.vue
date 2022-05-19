@@ -1,13 +1,13 @@
 <template>
-    <div id="app-maincards">
-        <MainCards/>
+    <div id="app-distrate">
+        <DistRate/>
     </div>
 </template>
 
 <script>
 
 
-import MainCards from "./components/MainCards";
+import DistRate from "./components/DistRate";
 export default {
     name: 'App',
     props: {
@@ -16,14 +16,14 @@ export default {
         }
     },
     components: {
-        MainCards,
+        DistRate,
     }
 }
 </script>
 
 <style>
 
-#app-maincards {
+#app-distrate {
     font-family: Lato, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;

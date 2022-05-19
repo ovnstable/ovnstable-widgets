@@ -1,0 +1,105 @@
+<template>
+    <v-container class="main">
+        <div class="line-dist-container">
+            <template v-if="chartData">
+                <LineChartDist :data="chartData"/>
+            </template>
+        </div>
+    </v-container>
+</template>
+
+<script>
+
+import LineChartDist from "./chart/LineChartDist";
+
+export default {
+    name: 'DistRate',
+
+    components: {
+        LineChartDist
+    },
+
+    props: {},
+
+    data: () => ({
+        chartData: [],
+    }),
+
+    computed: {},
+
+    created() {
+        this.getDistRateData();
+    },
+
+    methods: {
+
+        fillData(value) {
+            let labels = [];
+            let ovnDist = [];
+            let normalDist = [];
+
+
+            for (let i = 0; i < value.length; i++) {
+                let element = value[i];
+                labels.push(element.label)
+                ovnDist.push(element.ovnDist)
+                normalDist.push(element.normalDist)
+            }
+
+            this.chartData = {
+                labels: labels,
+                datasets: [{
+                    type: 'line',
+                    fill: false,
+                    label: 'Normal Distribution',
+                    data: normalDist,
+                    order: 1,
+                }, {
+                    type: 'column',
+                    order: 2,
+                    label: 'Overnight rate distribution',
+                    data: ovnDist,
+                }],
+            };
+        },
+
+        getDistRateData() {
+            let fetchOptions = {
+                headers: {
+                    "Access-Control-Allow-Origin": process.env.VUE_APP_WIDGET_API_URL
+                }
+            };
+
+            fetch(process.env.VUE_APP_WIDGET_API_URL + '/widget/distribution-rate', fetchOptions)
+                .then(value => value.json())
+                .then(value => {
+                    this.fillData(value)
+                    this.loading = false;
+                }).catch(reason => {
+                console.log('Error get data: ' + reason)
+                this.loading = false;
+            })
+        },
+    }
+}
+</script>
+
+
+<style scoped>
+
+.main {
+    font-style: normal;
+    width: 100%;
+    display: inline-block;
+
+    background: none;
+}
+
+.line-dist-container {
+    width: 800px !important;
+    background: #111E37 !important;
+    border: 1px solid #4C586D !important;
+    box-sizing: border-box;
+}
+
+</style>
