@@ -38,12 +38,11 @@ export default {
             let ovnDist = [];
             let normalDist = [];
 
-
             for (let i = 0; i < value.length; i++) {
                 let element = value[i];
                 labels.push(element.label)
-                ovnDist.push(element.ovnDist)
-                normalDist.push(element.normalDist)
+                ovnDist.push(parseFloat(element.ovnDist).toFixed(2))
+                normalDist.push(parseFloat(element.normalDist).toFixed(2))
             }
 
             this.chartData = {
