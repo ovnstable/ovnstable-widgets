@@ -2,7 +2,7 @@
     <v-container class="main">
         <v-row>
             <v-col>
-                <StablecoinsCard title="stablecoins in portfolio" :data="stablecoinsData"/>
+                <StablecoinsCard title="collateral in portfolio" :data="stablecoinsData"/>
             </v-col>
         </v-row>
         <v-row>

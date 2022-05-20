@@ -58,7 +58,7 @@ export default {
                     sum += value[i][4];
                 }
 
-                this.pcv = '$ ' + this.$utils.formatMoneyComma(sum, 2);
+                this.pcv = '$ ' + this.$utils.formatMoneyComma(sum, 3);
             } else {
                 this.pcv = '—';
             }
