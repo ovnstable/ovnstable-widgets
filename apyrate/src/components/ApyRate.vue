@@ -47,7 +47,7 @@ export default {
             };
 
             [...value].reverse().forEach(item => {
-                widgetDataDictApy[moment(item.payableDate).format('DD.MM.YYYY')] = item.annualizedYield;
+                widgetDataDictApy[moment(item.payableDate).format('DD.MM.YYYY')] = parseFloat(item.annualizedYield ? item.annualizedYield : 0.0).toFixed(4);
             });
 
             for(let key in widgetDataDictApy) {
