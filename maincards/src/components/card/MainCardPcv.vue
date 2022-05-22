@@ -109,6 +109,7 @@ export default {
 
     .network-img-polygon {
         width: 32px !important;
+        margin-top: 5px !important;
     }
 
     .main-card-container {
@@ -130,7 +131,7 @@ export default {
     }
 
     .shield-img-mobile {
-        margin-left: 248px;
+        margin-left: 246px;
         margin-top: 9px;
     }
 }
@@ -158,6 +159,7 @@ export default {
 
     .network-img-polygon {
         width: 40px !important;
+        margin-top: 10px !important;
     }
 
     .main-card-container {
