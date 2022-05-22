@@ -132,7 +132,7 @@ export default {
 
     .shield-img-mobile {
         margin-left: 246px;
-        margin-top: 9px;
+        margin-top: 8px;
     }
 }
 
@@ -177,7 +177,7 @@ export default {
     }
 
     .shield-img {
-        margin-left: 328px;
+        margin-left: 327px;
         margin-top: 18px;
     }
 

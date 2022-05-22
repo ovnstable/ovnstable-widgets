@@ -120,7 +120,7 @@ export default {
 
     .arrow-img-mobile {
         margin-left: 180px;
-        margin-top: 20px;
+        margin-top: 19px;
     }
 }
 
@@ -156,7 +156,7 @@ export default {
 
     .arrow-img {
         margin-left: 270px;
-        margin-top: 32px;
+        margin-top: 31px;
     }
 
     .arrow-img-mobile {
