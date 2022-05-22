@@ -21,6 +21,19 @@
             </svg>
         </div>
 
+        <div class="arrow-img-mobile">
+            <svg width="152" height="145" viewBox="0 0 152 145" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M44.6507 73.4283L47.7883 68.314L41.9234 64.716L39.157 71.0159L44.6507 73.4283ZM97.85 106.066L94.7124 111.18L100.581 114.781L103.345 108.474L97.85 106.066ZM144.195 0.319822L88.3831 41.3684L151.838 69.179L144.195 0.319822ZM11.3057 164.288L50.1444 75.8407L39.157 71.0159L0.318332 159.464L11.3057 164.288ZM41.5131 78.5425L94.7124 111.18L100.988 100.952L47.7883 68.314L41.5131 78.5425ZM103.345 108.474L128.015 52.1868L117.024 47.3698L92.3546 103.657L103.345 108.474Z" fill="url(#paint0_linear_753_145335)"/>
+                <defs>
+                    <linearGradient id="paint0_linear_753_145335" x1="5.81201" y1="0.319824" x2="188.988" y2="98.7528" gradientUnits="userSpaceOnUse">
+                        <stop stop-color="#052758"/>
+                        <stop offset="1" stop-color="#071025"/>
+                    </linearGradient>
+                </defs>
+            </svg>
+
+        </div>
+
         <v-row class="value-row">
             <label class="value-label">
                 {{ value }}
@@ -71,13 +84,91 @@ export default {
 
 <style scoped>
 
-.arrow-img {
-    position: absolute;
-    margin-left: 270px;
-    margin-top: 32px;
+/* mobile */
+@media only screen and (max-width: 1400px) {
+    .value-label {
+        font-style: normal;
+        font-weight: 400;
+        font-size: 40px;
+        line-height: 42px;
+    }
+
+    .text-label {
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 24px;
+        letter-spacing: 0.04em !important;
+    }
+
+    .main-card-container {
+        min-height: 166px !important;
+        width: 344px !important;
+    }
+
+    .value-row, .label-row {
+        margin-left: 25px !important;
+    }
+
+    .value-row {
+        margin-top: 47px !important;
+        margin-bottom: 12px !important;
+    }
+
+    .arrow-img {
+        display: none !important;
+    }
+
+    .arrow-img-mobile {
+        margin-left: 180px;
+        margin-top: 20px;
+    }
 }
 
-.arrow-img > svg > path {
+@media only screen and (min-width: 1400px) {
+    .value-label {
+        font-style: normal;
+        font-weight: 400;
+        font-size: 54px;
+        line-height: 60px;
+    }
+
+    .text-label {
+        font-style: normal;
+        font-weight: 400;
+        font-size: 20px;
+        line-height: 24px;
+        letter-spacing: 0.04em !important;
+    }
+
+    .main-card-container {
+        min-height: 254px !important;
+        width: 527px !important;
+    }
+
+    .value-row, .label-row {
+        margin-left: 44px !important;
+    }
+
+    .value-row {
+        margin-top: 76px !important;
+        margin-bottom: 22px !important;
+    }
+
+    .arrow-img {
+        margin-left: 270px;
+        margin-top: 32px;
+    }
+
+    .arrow-img-mobile {
+        display: none !important;
+    }
+}
+
+.arrow-img, .arrow-img-mobile {
+    position: absolute;
+}
+
+.arrow-img > svg > path, .arrow-img-mobile > svg > path {
     stroke-dasharray: 1000;
     stroke-dashoffset: 1000;
     animation: dash-arrow 5s linear forwards;
@@ -92,19 +183,11 @@ export default {
 .main-card-container {
     border: 1px solid #29323E !important;
     background: #0A1632 !important;
-    min-height: 254px !important;
-    width: 527px !important;
 }
 
 .value-label {
     font-family: 'Roboto', sans-serif;
-    font-style: normal;
-    font-weight: 400;
-    font-size: 54px;
-    line-height: 60px;
-
     font-feature-settings: 'pnum' on, 'lnum' on;
-
     background: linear-gradient(91.26deg, #28A0F0 0%, rgba(6, 120, 196, 0.9917) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -114,26 +197,12 @@ export default {
 
 .text-label {
     font-family: 'Roboto', sans-serif;
-    font-style: normal;
-    font-weight: 400;
-    font-size: 20px;
-    line-height: 24px;
-
-    letter-spacing: 0.04em !important;
-
     text-transform: uppercase;
     font-feature-settings: 'pnum' on, 'lnum' on;
-
     color: white;
 }
 
-.value-row {
-    margin-top: 76px !important;
-    margin-left: 44px !important;
-    margin-bottom: 22px !important;
-}
-
-.label-row {
-    margin-left: 44px !important;
+.value-label, .text-label {
+    z-index: 100 !important;
 }
 </style>

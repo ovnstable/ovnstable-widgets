@@ -6,41 +6,6 @@ url=$2
 deploySSH=$3
 tag=1
 
-cd polybor || exit
-
-npm install
-npm run build
-
-cd ..
-find polybor/dist/js/ -type f -name '*.js' -exec sh -c 'x="{}"; mv "$x" "polybor/dist/js/polybor.js"' \;
-
-
-cd rate || exit
-
-npm install
-npm run build
-
-cd ..
-find rate/dist/js/ -type f -name '*.js' -exec sh -c 'x="{}"; mv "$x" "rate/dist/js/rate.js"' \;
-
-
-cd table || exit
-
-npm install
-npm run build
-
-cd ..
-find table/dist/js/ -type f -name '*.js' -exec sh -c 'x="{}"; mv "$x" "table/dist/js/table.js"' \;
-
-
-cd doughnut || exit
-
-npm install
-npm run build
-
-cd ..
-find doughnut/dist/js/ -type f -name '*.js' -exec sh -c 'x="{}"; mv "$x" "doughnut/dist/js/doughnut.js"' \;
-
 
 cd maincards || exit
 
