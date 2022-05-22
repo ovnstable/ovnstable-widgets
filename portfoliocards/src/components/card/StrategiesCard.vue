@@ -10,7 +10,7 @@
             <v-spacer></v-spacer>
             <vc-donut
                     :background="'#FFFFFF'"
-                    :size="320" unit="px" :thickness="16"
+                    :size="isMobile ? 200 : 320" unit="px" :thickness="16"
                     :sections="sections"
                     :start-angle="0" :auto-adjust-text-size="false">
                 <p class="total-label">Total USD+</p>
@@ -77,7 +77,11 @@ export default {
         },
     },
 
-    computed: {},
+    computed: {
+        isMobile() {
+            return window.innerWidth <= 1400;
+        },
+    },
 
     mounted() {
         this.updateSectionsData();
@@ -119,20 +123,112 @@ export default {
 
 <style>
 
+/* mobile */
+@media only screen and (max-width: 1400px) {
+    .card-title-label {
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 20px;
+        letter-spacing: 0.02em;
+    }
+
+    .total-label {
+        font-style: normal;
+        font-weight: 300;
+        font-size: 16px;
+        line-height: 24px;
+    }
+
+    .total-sum-label {
+        font-style: normal;
+        font-weight: 400;
+        font-size: 24px;
+        line-height: 36px;
+    }
+
+    .strategy-label, .strategy-title-label {
+        font-style: normal;
+        font-weight: 300;
+        font-size: 16px;
+        line-height: 24px;
+    }
+
+    .strategy-progress {
+        width: 80px !important;
+        margin-right: 12px !important;
+        margin-top: 12px !important;
+    }
+
+    .main-card-container {
+        width: 344px !important;
+    }
+
+    .strategy-row {
+        margin-left: 20px !important;
+    }
+
+    .title-row {
+        margin-top: 40px !important;
+    }
+}
+
+@media only screen and (min-width: 1400px) {
+    .card-title-label {
+        font-style: normal;
+        font-weight: 400;
+        font-size: 20px;
+        line-height: 24px;
+        letter-spacing: 0.04em;
+    }
+
+    .total-label {
+        font-style: normal;
+        font-weight: 300;
+        font-size: 20px;
+        line-height: 32px;
+    }
+
+    .total-sum-label {
+        font-style: normal;
+        font-weight: 400;
+        font-size: 40px;
+        line-height: 42px;
+    }
+
+    .strategy-label, .strategy-title-label {
+        font-style: normal;
+        font-weight: 300;
+        font-size: 20px;
+        line-height: 32px;
+    }
+
+    .strategy-progress {
+        width: 155px !important;
+        margin-right: 12px !important;
+        margin-top: 12px !important;
+    }
+
+    .main-card-container {
+        width: 663px !important;
+    }
+
+    .strategy-row {
+        margin-left: 76px !important;
+    }
+
+    .title-row {
+        margin-top: 60px !important;
+    }
+}
+
 .main-card-container {
     border: 1px solid #DEE1E5 !important;
     background: #FFFFFF !important;
-    /*min-height: 768px !important;*/
-    width: 663px !important;
 }
 
 .card-title-label {
     font-family: 'Roboto', sans-serif;
-    font-style: normal;
-    font-weight: 400;
-    font-size: 20px;
-    line-height: 24px;
-    letter-spacing: 0.04em;
     text-transform: uppercase;
     font-feature-settings: 'pnum' on, 'lnum' on;
     color: #333333;
@@ -140,10 +236,6 @@ export default {
 
 .strategy-label, .strategy-title-label {
     font-family: 'Roboto', sans-serif;
-    font-style: normal;
-    font-weight: 300;
-    font-size: 20px;
-    line-height: 32px;
     color: #333333;
 }
 
@@ -153,20 +245,12 @@ export default {
 
 .total-label {
     font-family: 'Roboto', sans-serif;
-    font-style: normal;
-    font-weight: 300;
-    font-size: 20px;
-    line-height: 32px;
     text-align: center;
     color: #333333;
 }
 
 .total-sum-label {
     font-family: 'Roboto', sans-serif;
-    font-style: normal;
-    font-weight: 400;
-    font-size: 40px;
-    line-height: 42px;
     text-align: center;
     font-feature-settings: 'pnum' on, 'lnum' on;
     color: #333333;
@@ -174,22 +258,16 @@ export default {
     margin-top: 6px !important;
 }
 
-.title-row {
-    margin-top: 60px !important;
-}
-
 .doughnut-row {
     padding-top: 32px !important;
+    padding-bottom: 32px !important;
 }
 
 .strategy-row-list {
-    margin-top: 32px !important;
-    margin-bottom: 16px !important;
+    margin-bottom: 32px !important;
 }
 
 .strategy-row {
-    margin-left: 76px !important;
-    margin-right: 76px !important;
     margin-bottom: 8px !important;
 }
 
@@ -201,11 +279,4 @@ export default {
     left: 0 !important;
     right: auto !important;
 }
-
-.strategy-progress {
-    width: 155px !important;
-    margin-right: 12px !important;
-    margin-top: 12px !important;
-}
-
 </style>
