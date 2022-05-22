@@ -157,7 +157,7 @@ export default {
 
     .main-card-container {
         min-height: 520px !important;
-        width: 663px !important;
+        width: 540px !important;
     }
 
     .title-row {
