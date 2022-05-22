@@ -5,21 +5,23 @@
             <label class="card-title-label">{{ title }}</label>
             <v-spacer></v-spacer>
         </v-row>
+
         <v-row class="doughnut-row">
             <v-spacer></v-spacer>
             <vc-donut
                     background="none"
-                    :size="250" unit="px"
+                    :size="isMobile ? 200 : 250" unit="px"
                     :sections="sections"
                     :start-angle="0" :auto-adjust-text-size="false">
             </vc-donut>
             <v-spacer></v-spacer>
         </v-row>
+
         <v-container class="stablecoin-row-list">
             <v-col cols="12">
-                <v-row class="stablecoin-row">
+                <v-row class="stablecoin-row" v-for="item in data" v-bind:key="item.label">
                     <v-spacer></v-spacer>
-                    <span v-for="item in data" v-bind:key="item.label" class="img-label-col" @click="openTokenOnScan(item.link)">
+                    <span class="img-label-col" @click="openTokenOnScan(item.link)">
                         <v-img class="currency-icon" :src="item.logo"/>
                         <label class="stablecoin-label">{{ item.label }}</label>
                         <label class="stablecoin-label-percent">{{ $utils.formatMoneyComma(getPercent(item, data), 0) }}%</label>
@@ -54,7 +56,11 @@ export default {
         sections: [],
     }),
 
-    computed: {},
+    computed: {
+        isMobile() {
+            return window.innerWidth <= 1400;
+        },
+    },
 
     mounted() {
         this.updateSectionsData();
@@ -96,20 +102,76 @@ export default {
 
 <style scoped>
 
+/* mobile */
+@media only screen and (max-width: 1400px) {
+    .card-title-label {
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 20px;
+        letter-spacing: 0.02em;
+    }
+
+    .stablecoin-label, .stablecoin-label-percent {
+        font-style: normal;
+        font-weight: 300;
+        font-size: 16px;
+        line-height: 24px;
+    }
+
+    .currency-icon {
+        width: 24px;
+        height: 24px;
+    }
+
+    .main-card-container {
+        min-height: 430px !important;
+        width: 344px !important;
+    }
+
+    .title-row {
+        margin-top: 40px !important;
+    }
+}
+
+@media only screen and (min-width: 1400px) {
+    .card-title-label {
+        font-style: normal;
+        font-weight: 400;
+        font-size: 20px;
+        line-height: 24px;
+        letter-spacing: 0.04em;
+    }
+
+    .stablecoin-label, .stablecoin-label-percent {
+        font-style: normal;
+        font-weight: 300;
+        font-size: 20px;
+        line-height: 32px;
+    }
+
+    .currency-icon {
+        width: 32px;
+        height: 32px;
+    }
+
+    .main-card-container {
+        min-height: 520px !important;
+        width: 663px !important;
+    }
+
+    .title-row {
+        margin-top: 60px !important;
+    }
+}
+
 .main-card-container {
     border: 1px solid #DEE1E5 !important;
     background: #FFFFFF !important;
-    min-height: 490px !important;
-    width: 663px !important;
 }
 
 .card-title-label {
     font-family: 'Roboto', sans-serif;
-    font-style: normal;
-    font-weight: 400;
-    font-size: 20px;
-    line-height: 24px;
-    letter-spacing: 0.04em;
     text-transform: uppercase;
     font-feature-settings: 'pnum' on, 'lnum' on;
     color: #333333;
@@ -117,12 +179,7 @@ export default {
 
 .stablecoin-label, .stablecoin-label-percent {
     font-family: 'Roboto', sans-serif;
-    font-style: normal;
-    font-weight: 300;
-    font-size: 20px;
-    line-height: 32px;
     color: #333333;
-
     margin-left: 8px !important;
 }
 
@@ -130,26 +187,13 @@ export default {
     cursor: pointer !important;
 }
 
-.title-row {
-    margin-top: 60px !important;
-}
-
 .doughnut-row {
     padding-top: 32px !important;
-}
-
-.stablecoin-row-list {
-    margin-top: 44px !important;
+    padding-bottom: 32px !important;
 }
 
 .stablecoin-row {
-    margin-left: 65px !important;
-    margin-right: 65px !important;
-}
-
-.currency-icon {
-    width: 32px;
-    height: 32px;
+    margin-bottom: 10px !important;
 }
 
 .img-label-col {
