@@ -23,6 +23,13 @@ export default {
 
 <style>
 
+/* mobile */
+@media only screen and (max-width: 1400px) {
+}
+
+@media only screen and (min-width: 1400px) {
+}
+
 #app-distrate {
     font-family: Lato, sans-serif;
     -webkit-font-smoothing: antialiased;
