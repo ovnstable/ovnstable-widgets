@@ -32,13 +32,13 @@ export default {
 
 @media only screen and (max-width: 960px) {
     #app-distrate {
-        width: 80vw !important;
+        width: 88vw !important;
     }
 }
 
 @media only screen and (min-width: 961px) {
     #app-distrate {
-        width: 40vw !important;
+        width: 43vw !important;
     }
 }
 
