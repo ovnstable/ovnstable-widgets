@@ -210,11 +210,11 @@ export default {
     }
 
     .main-card-container {
-        width: 663px !important;
+        width: 540px !important;
     }
 
     .strategy-row {
-        margin-left: 76px !important;
+        margin-left: 32px !important;
     }
 
     .title-row {

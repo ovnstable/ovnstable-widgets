@@ -71,6 +71,7 @@ export default {
                     this.fillData(value);
                 }).catch(reason => {
                 console.log('Error get data: ' + reason);
+                this.loading = false;
             })
         },
     }
@@ -79,6 +80,13 @@ export default {
 
 
 <style scoped>
+
+/* mobile */
+@media only screen and (max-width: 1400px) {
+}
+
+@media only screen and (min-width: 1400px) {
+}
 
 .main {
     font-style: normal;
@@ -89,7 +97,6 @@ export default {
 }
 
 .line-apy-container {
-    width: 800px !important;
     background: #111E37 !important;
     border: 1px solid #4C586D !important;
     box-sizing: border-box;

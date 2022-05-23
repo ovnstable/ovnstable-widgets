@@ -23,13 +23,30 @@ export default {
 
 <style>
 
+/* mobile */
+@media only screen and (max-width: 1400px) {
+}
+
+@media only screen and (min-width: 1400px) {
+}
+
+@media only screen and (max-width: 960px) {
+    #app-apyrate {
+        width: 80vw !important;
+    }
+}
+
+@media only screen and (min-width: 961px) {
+    #app-apyrate {
+        width: 40vw !important;
+    }
+}
+
 #app-apyrate {
     font-family: Lato, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     background-color: transparent;
-
-    width: 100%;
 }
 
 </style>

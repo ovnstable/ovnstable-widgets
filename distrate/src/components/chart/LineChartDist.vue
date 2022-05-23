@@ -12,10 +12,23 @@
 
         <div class="chart-row" id="line-chart-dist"></div>
 
-        <v-row class="legend-row">
+        <v-row class="legend-row" v-if="!isMobile">
             <v-spacer></v-spacer>
             <div class="solid-legend"></div>
             <label class="legend-label">Overnight rate distribution</label>
+            <div class="dash-legend"></div>
+            <label class="legend-label">Normal distribution</label>
+            <v-spacer></v-spacer>
+        </v-row>
+
+        <v-row class="legend-row" v-if="isMobile">
+            <v-spacer></v-spacer>
+            <div class="solid-legend"></div>
+            <label class="legend-label">Overnight rate distribution</label>
+            <v-spacer></v-spacer>
+        </v-row>
+        <v-row class="legend-row" v-if="isMobile">
+            <v-spacer></v-spacer>
             <div class="dash-legend"></div>
             <label class="legend-label">Normal distribution</label>
             <v-spacer></v-spacer>
@@ -54,6 +67,9 @@ export default {
     }),
 
     computed: {
+        isMobile() {
+            return window.innerWidth <= 960;
+        },
     },
 
     mounted() {
@@ -101,7 +117,6 @@ export default {
                 chart: {
                     type: 'area',
                     height: 250,
-                    width: 730,
 
                     sparkline: {
                         enabled: false,
@@ -201,15 +216,55 @@ export default {
 }
 </script>
 
-<style>
+<style>/* mobile */
+@media only screen and (max-width: 1400px) {
+    .chart-title {
+        font-style: normal;
+        font-weight: 300;
+        font-size: 20px;
+        line-height: 32px;
+    }
+
+    .legend-label {
+        font-style: normal;
+        font-weight: 300;
+        font-size: 16px;
+        line-height: 24px;
+        text-align: center;
+    }
+}
+
+@media only screen and (max-width: 960px) {
+    .legend-row {
+        margin-bottom: 6px !important;
+    }
+}
+
+@media only screen and (min-width: 961px) {
+    .legend-row {
+        margin-bottom: 44px !important;
+    }
+}
+
+@media only screen and (min-width: 1400px) {
+    .chart-title {
+        font-style: normal;
+        font-weight: 300 !important;
+        font-size: 24px !important;
+        line-height: 36px !important;
+        letter-spacing: 0.04em !important;
+    }
+
+    .legend-label {
+        font-style: normal;
+        font-weight: 300 !important;
+        font-size: 16px !important;
+        line-height: 24px !important;
+    }
+}
 
 .chart-title {
     font-family: 'Roboto', sans-serif;
-    font-style: normal;
-    font-weight: 300 !important;
-    font-size: 24px !important;
-    line-height: 36px !important;
-    letter-spacing: 0.04em !important;
     color: #FFFFFF !important;
 }
 
@@ -250,10 +305,6 @@ export default {
     margin-right: 28px;
 }
 
-.legend-row {
-    margin-bottom: 44px !important;
-}
-
 .header-text-row {
     margin-left: 28px !important;
     margin-right: 28px !important;
@@ -265,13 +316,8 @@ export default {
 
 .legend-label {
     font-family: 'Roboto', sans-serif;
-    font-style: normal;
-    font-weight: 300 !important;
-    font-size: 16px !important;
-    line-height: 24px !important;
     font-feature-settings: 'pnum' on, 'lnum' on;
     color: #FFFFFF;
-
     margin-left: 8px;
 }
 
