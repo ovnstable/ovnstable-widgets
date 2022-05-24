@@ -7,7 +7,7 @@
         </v-row>
         <v-row>
             <v-col>
-                <MainCardApy label="7-day average usd+ apy" :value="apyWeek"/>
+                <MainCardApy label="USD+ APY based on 7-day average" :value="apyWeek"/>
             </v-col>
         </v-row>
     </v-container>
