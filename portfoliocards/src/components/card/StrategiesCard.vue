@@ -279,4 +279,8 @@ export default {
     left: 0 !important;
     right: auto !important;
 }
+
+.strategy-title-label:hover {
+    text-decoration: underline !important;
+}
 </style>
