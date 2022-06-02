@@ -201,4 +201,7 @@ export default {
     margin-right: 30px !important;
 }
 
+.stablecoin-label:hover {
+    text-decoration: underline !important;
+}
 </style>
