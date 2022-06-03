@@ -55,7 +55,7 @@ export default {
                 let sum = 0.0;
 
                 for (let i = 0; i < value.length; i++) {
-                    sum += value[i][4];
+                    sum += value[i].netAssetValue;
                 }
 
                 this.pcv = '$ ' + this.$utils.formatMoneyComma(sum, 3);

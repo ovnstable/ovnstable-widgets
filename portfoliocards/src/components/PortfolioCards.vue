@@ -61,18 +61,18 @@ export default {
         fillStrategiesData(value) {
             let result = [];
 
-            value.sort((a,b) => b[4] - a[4]);
+            value.sort((a,b) => b.netAssetValue - a.netAssetValue);
 
             for (let i = 0; i < value.length; i++) {
                 let element = value[i];
 
                 result.push(
                     {
-                        label: element[0],
-                        fullName: element[1],
-                        value: element[4],
+                        label: element.name,
+                        fullName: element.fullName,
+                        value: element.netAssetValue,
                         color: this.colors[i],
-                        link: element[3] ? 'https://polygonscan.com/address/' + element[3] : ''
+                        link: element.address ? 'https://polygonscan.com/address/' + element.address : ''
                     }
                 );
             }
