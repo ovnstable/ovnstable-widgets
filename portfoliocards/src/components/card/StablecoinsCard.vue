@@ -24,7 +24,7 @@
                     <span class="img-label-col" @click="openTokenOnScan(item.link)">
                         <v-img class="currency-icon" :src="item.logo"/>
                         <label class="stablecoin-label">{{ item.label }}</label>
-                        <label class="stablecoin-label-percent">{{ $utils.formatMoneyComma(getPercent(item, data), 0) }}%</label>
+                        <label class="stablecoin-label-percent">{{ $utils.formatMoneyComma(getPercent(item, data), 1) }}%</label>
                     </span>
                     <v-spacer></v-spacer>
                 </v-row>

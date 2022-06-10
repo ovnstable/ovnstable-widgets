@@ -33,7 +33,7 @@
                                            class="strategy-progress"
                                            height="6">
                         </v-progress-linear>
-                        <label class="strategy-label">{{ $utils.formatMoneyComma(getPercent(item, data), 0) }}%</label>
+                        <label class="strategy-label">{{ $utils.formatMoneyComma(getPercent(item, data), 1) }}%</label>
                     </v-col>
                 </v-row>
             </v-container>
