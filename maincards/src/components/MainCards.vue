@@ -58,7 +58,7 @@ export default {
                     sum += value[i].netAssetValue;
                 }
 
-                this.pcv = '$ ' + this.$utils.formatMoneyComma(sum, 3);
+                this.pcv = '$ ' + this.$utils.formatMoneyComma(sum, 2);
             } else {
                 this.pcv = '—';
             }
