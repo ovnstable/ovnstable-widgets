@@ -43,19 +43,21 @@ export default {
             "#26A17B",
             "#23DD00",
         ],
+
+        colorsStablecoins: [
+            "#2775CA",
+            "#26A17B",
+            "#FCCA46",
+            "#FE7F2D",
+            "#B22174",
+        ],
     }),
 
     computed: {},
 
     created() {
-        /* TODO: it's hardcoded, need to change */
-        this.stablecoinsData = [
-            {"label": "USDC", "value": 1434685.535, "link": "0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174", "color": "#2775CA", "logo": require('../assets/currencies/usdc.png')},
-            {"label": "USDT", "value": 552677.2502, "link": "0xc2132d05d31c914a87c6611c10748aeb04b58e8f", "color": "#26A17B", "logo": require('../assets/currencies/usdt.png')},
-            {"label": "DAI", "value": 247020.4647, "link": "0x8f3Cf7ad23Cd3CaDbD9735AFf958023239c6A063", "color": "#FCCA46", "logo": require('../assets/currencies/dai.png')},
-        ];
-
         this.getStrategiesData();
+        this.getStablecoinsData();
     },
 
     methods: {
@@ -81,6 +83,33 @@ export default {
             this.strategiesData = result;
         },
 
+        fillStablecoinsData(value) {
+            let result = [];
+
+            value.sort((a,b) => b.netAssetValue - a.netAssetValue);
+            value = value.filter(el => el.netAssetValue > 0);
+
+            for (let i = 0; i < value.length; i++) {
+                let element = value[i];
+
+                try {
+                    result.push(
+                        {
+                            label: element.id.tokenName,
+                            value: element.netAssetValue,
+                            link: element.tokenAddress ? element.tokenAddress : '',
+                            color: this.colorsStablecoins[i],
+                            logo: require('../assets/currencies/' + element.id.tokenName + '.png')
+                        }
+                    );
+                } catch (e) {
+                    console.error("Error while adding stablecoin to list: " + e);
+                }
+            }
+
+            this.stablecoinsData = result;
+        },
+
         getStrategiesData() {
             let fetchOptions = {
                 headers: {
@@ -100,6 +129,24 @@ export default {
                 .then(value => value.json())
                 .then(value => {
                     this.fillStrategiesData(value)
+                    this.loading = false;
+                }).catch(reason => {
+                console.log('Error get data: ' + reason)
+                this.loading = false;
+            })
+        },
+
+        getStablecoinsData() {
+            let fetchOptions = {
+                headers: {
+                    "Access-Control-Allow-Origin": process.env.VUE_APP_WIDGET_API_URL
+                }
+            };
+
+            fetch(process.env.VUE_APP_WIDGET_API_URL + '/dapp/collateral/total', fetchOptions)
+                .then(value => value.json())
+                .then(value => {
+                    this.fillStablecoinsData(value)
                     this.loading = false;
                 }).catch(reason => {
                 console.log('Error get data: ' + reason)
