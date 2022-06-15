@@ -35,6 +35,8 @@
 
 <script>
 
+/* eslint-disable no-unused-vars,no-undef */
+
 export default {
     name: "StablecoinsCard",
 
@@ -55,6 +57,12 @@ export default {
     data: () => ({
         sections: [],
     }),
+
+    watch: {
+        data: function (newVal, oldVal) {
+            this.updateSectionsData();
+        },
+    },
 
     computed: {
         isMobile() {
