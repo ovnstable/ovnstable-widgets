@@ -2,7 +2,7 @@
     <v-container class="main">
         <v-row>
             <v-col>
-                <MainCardPcv label="Protocol Controlled Value" :value="pcv"/>
+                <MainCardPcv label="Total Value Locked" :value="pcv"/>
             </v-col>
         </v-row>
         <v-row>

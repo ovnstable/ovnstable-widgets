@@ -1,5 +1,5 @@
 <template>
-    <div class="main-card-container">
+    <div class="main-card-container" @click="openLink('https://app.overnight.fi/fund')">
         <div class="arrow-img">
             <svg width="226" height="221" viewBox="0 0 226 221" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M65.4999 112.5L68.6375 107.386L62.7726 103.788L60.0062 110.088L65.4999 112.5ZM147 162.5L143.862 167.614L149.731 171.215L152.495 164.908L147 162.5ZM218 0.499509L162.188 41.5481L225.643 69.3587L218 0.499509ZM11.4936 250.412L70.9936 114.912L60.0062 110.088L0.506199 245.588L11.4936 250.412ZM62.3623 117.614L143.862 167.614L150.137 157.386L68.6375 107.386L62.3623 117.614ZM152.495 164.908L201.819 52.3665L190.828 47.5495L141.504 160.092L152.495 164.908Z"
@@ -78,7 +78,11 @@ export default {
     created() {
     },
 
-    methods: {}
+    methods: {
+        openLink(url) {
+            window.open(url, '_blank').focus();
+        },
+    }
 }
 </script>
 

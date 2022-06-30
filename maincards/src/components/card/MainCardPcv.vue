@@ -1,5 +1,5 @@
 <template>
-    <div class="main-card-container">
+    <div class="main-card-container" @click="openLink('https://app.overnight.fi/fund')">
         <div class="shield-img">
             <svg width="198" height="234" viewBox="0 0 198 234" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M111.789 256C111.789 256 6 229.604 6 45.8492C41.2629 42.9955 75.8125 39.0208 111.789 6C147.765 38.9189 182.315 42.9955 217.578 45.8492C217.68 229.604 111.789 256 111.789 256Z"
@@ -77,6 +77,10 @@ export default {
     },
 
     methods: {
+        openLink(url) {
+            window.open(url, '_blank').focus();
+        },
+
         openOnPolygon() {
             window.open('https://polygonscan.com/address/0x236eeC6359fb44CCe8f97E99387aa7F8cd5cdE1f', '_blank').focus();
         }
